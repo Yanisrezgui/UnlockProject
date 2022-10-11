@@ -36,13 +36,17 @@ img:hover {
     cursor: pointer;
 }
 
-.timer {
+#timer {
     width: 45%;
     text-align: center;
     background-color: #D9D9D9;
     border-radius: 45px;
     padding: 6px;
     box-shadow: 0px 1px 6px 0px #000000;
+    font-size: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-weight: bold;
 }
 
 .gridScreen {

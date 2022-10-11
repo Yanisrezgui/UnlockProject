@@ -19,7 +19,6 @@ $app->add(TwigMiddleware::createFromContainer($app));
 $app->get('/', function (Request $request, Response $response, $args) {
     require('index.html');
 
-    $response->getBody()->write("Hello world!");
     return $response;
 });
 

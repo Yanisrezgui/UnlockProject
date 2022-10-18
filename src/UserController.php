@@ -5,6 +5,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 
+
 class UserController
 {
   private $view;
@@ -17,7 +18,7 @@ class UserController
 
   public function test(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
   {
-    $user = $this->userService->signUp('test');
+    $user = $this->userService->signUp('dfghjuiyty');
     return $this->view->render($response, 'hello.twig', [
       'name' => 'me',
     ]);

@@ -21,6 +21,14 @@ public function getNumber(){
     return $this->number;
 }
 
+public function getImageRecto(){
+    return $this->Image_recto;
+}
+
+public function getImageVerso(){
+    return $this->Image_verso;
+}
+
 public function getFlipCard(){
     return $this->flip;
 }

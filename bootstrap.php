@@ -42,7 +42,7 @@ $container->set(EntityManager::class, static function (Container $c): EntityMana
 $container->set('view', function () {
     return Twig::create(
         __DIR__ . '/templates',
-        ['cache' => __DIR__ . '/cache']
+        ['cache' => false]
     );
 });
 

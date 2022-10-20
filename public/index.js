@@ -1,5 +1,12 @@
-let temps = 3600
 const timerElement = document.getElementById("timer")
+const pauseTimer = document.getElementById("settings");
+const play = document.getElementById("padlock")
+
+let temps = 10
+let chrono = setInterval(diminuerTemps, 1000)
+
+pauseTimer.addEventListener('click', pause)
+play.addEventListener('click', start)
 
 function diminuerTemps() {
     let minutes = parseInt(temps / 60, 10)
@@ -12,7 +19,18 @@ function diminuerTemps() {
     temps = temps <= 0 ? 0 : temps - 1
 }
 
-setInterval(diminuerTemps, 1000)
+function pause () {
+    clearInterval(chrono);
+    chrono = null;
+}
+
+function start () {
+    chrono = setInterval(diminuerTemps, 1000)
+}
+
+setInterval(chrono)
+
+
 
 /* let b1 = document.getElementById('b1');
 

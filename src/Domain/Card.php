@@ -37,4 +37,8 @@ public function getType(){
     return $this->type;
 }
 
+public function setFlipCard(){
+    return $this->flip=1;
+}
+
 }

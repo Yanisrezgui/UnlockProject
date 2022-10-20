@@ -20,8 +20,9 @@ class CardController
       {
           
           $card1=new Card(1, "./img/lamp_on.png", "./img/magnifying_glass.png", "jaune");
-          $card2=new Card(2, "imagerecto", "imageverso", "jaune");
-          $cards = array($card1, $card2);
+          $card1->setFlipCard();
+          $card2=new Card(2, "imagerecto", "imageverso", "bleu");
+          $cards = array($card1,$card2);
 
           return $this->view->render($response, 'Card.twig', [
               'cards' => $cards,

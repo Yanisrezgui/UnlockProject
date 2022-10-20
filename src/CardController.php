@@ -20,7 +20,7 @@ class CardController
       {
           
           $card1=new Card(1, "./img/lamp_on.png", "./img/magnifying_glass.png", "jaune");
-          $card1->setFlipCard();
+          //$card1->setFlipCard();
           $card2=new Card(2, "imagerecto", "imageverso", "bleu");
           $cards = array($card1,$card2);
 

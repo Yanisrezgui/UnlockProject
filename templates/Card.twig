@@ -1,11 +1,12 @@
 <h1>Carte</h1>
 <ul>
     {% for card in cards %}
-        {% if card.getFlipCard() == 0 %}
+        {% if card.getFlipCard() == false %}
             <li>cardid: {{card.getNumber()}}    </li>
             <li>recto: <img src={{card.getImagerecto()}} > </li>
             <li>type:   {{card.getType()}}      </li>
             <li>flip:   {{card.getFlipCard()}}  </li>
+            <li>Discard:   {{card.getDiscard()}}  </li>
         {% else %}
             <li>cardid: {{card.getNumber()}}    </li>
             <li>verso: <img src={{card.getImageverso()}} > </li>

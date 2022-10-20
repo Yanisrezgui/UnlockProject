@@ -11,17 +11,21 @@ class CardController
 {
     private $view;
 
-  public function __construct(Twig $view)
-  {
-    $this->view = $view;
-  }
-  
-    public function test(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    public function __construct(Twig $view)
     {
-        $card1=new Card(1,"imagerecto","imageverso","jaune");
-        return $this->view->render($response, 'Card.twig', [
-            'card' => $card1,
-          ]);
-        return $response;
+        $this->view = $view;
     }
+
+      public function test(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+      {
+          
+          $card1=new Card(1, "./img/lamp_on.png", "./img/magnifying_glass.png", "jaune");
+          $card2=new Card(2, "imagerecto", "imageverso", "jaune");
+          $cards = array($card1, $card2);
+
+          return $this->view->render($response, 'Card.twig', [
+              'cards' => $cards,
+            ]);
+          return $response;
+      }
 }

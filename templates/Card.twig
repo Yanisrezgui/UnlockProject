@@ -1,6 +1,16 @@
-Carte{{ carte  }}
-cardid: {{card.getNumber()}}
-recto: {{card.getImagerecto()}}
-verso: {{card.getImageverso()}}
-type: {{card.getType()}}
-flip: {{card.getFlipCard()}}
+<h1>Carte</h1>
+<ul>
+    {% for card in cards %}
+        {% if card.getFlipCard() == 0 %}
+            <li>cardid: {{card.getNumber()}}    </li>
+            <li>recto: <img src={{card.getImagerecto()}} > </li>
+            <li>type:   {{card.getType()}}      </li>
+            <li>flip:   {{card.getFlipCard()}}  </li>
+        {% else %}
+            <li>cardid: {{card.getNumber()}}    </li>
+            <li>verso: <img src={{card.getImageverso()}} > </li>
+            <li>type:   {{card.getType()}}      </li>
+            <li>flip:   {{card.getFlipCard()}}  </li>
+        {% endif %}
+    {% endfor %}
+</ul> 

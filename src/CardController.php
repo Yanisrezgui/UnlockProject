@@ -19,7 +19,7 @@ class CardController
 
       public function test(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
       {
-          $card1=new Card(1,"img/Carte_Intro.PNG.PNG","img/Carte_Explication_jeu.PNG","Introduction");
+          $card1=new Card(1,"img/Carte_Intro.PNG","img/Carte_Explication_jeu.PNG","Introduction");
           $cardK=new Card('K',  "img/CarteK_recto.PNG",   "img/CarteK_verso.PNG", "penalty");
           $card79=new Card(79,  "img/Carte79_recto.PNG",  "img/Carte79_verso.PNG", "penalty");
           $cardM=new Card('M',  "img/CarteM_recto.PNG",   "img/CarteM_verso.PNG", "gris");
@@ -39,7 +39,7 @@ class CardController
           $card67=new Card(67,  "img/Carte67_recto.PNG",  "img/Carte67_verso.PNG", "gris");
           $card47=new Card(47,  "img/Carte47_recto.PNG",  "img/Carte47_verso.PNG", "gris");
           $card73=new Card(73,  "img/Carte73_recto.PNG",  "img/Carte73_verso.PNG", "jaune");
-
+$card1->setFlipCard();
           $cards = array($card1,
           $cardK,
           $card79,

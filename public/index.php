@@ -22,6 +22,6 @@ $app->get('/', function (Request $request, Response $response, $args) {
     return $response;
 });
 
-$app->get('/Card', \App\CardController::class . ':test');
+$app->get('/Card', \App\CardController::class . ':CreateCard');
 
 $app->run();

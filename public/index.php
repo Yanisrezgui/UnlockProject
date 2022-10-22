@@ -17,7 +17,7 @@ $app->add(TwigMiddleware::createFromContainer($app));
 
 
 $app->get('/', function (Request $request, Response $response, $args) {
-    require('index.html');
+    require('main-menu.html');
 
     return $response;
 });

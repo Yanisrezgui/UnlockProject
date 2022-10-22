@@ -16,13 +16,14 @@ $app = AppFactory::create();
 $app->add(TwigMiddleware::createFromContainer($app));
 
 
-$app->get('/', function (Request $request, Response $response, $args) {
-    require('main-menu.html');
+$app->get('/index', function (Request $request, Response $response, $args) {
+    require('index.html');
 
     return $response;
 });
 
 $app->get('/Card', \App\CardController::class . ':CreateCard');
+$app->get('/', \App\AccueilController::class . ':Accueil');
 
 
 $app->run();

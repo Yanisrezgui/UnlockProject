@@ -16,7 +16,14 @@ class AccueilController
 
   public function Accueil(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
   {
-    return $this->view->render($response, 'main-menu.twig');
+    return $this->view->render($response, 'accueil/main-menu.twig');
     return $response;
   }
+
+  public function Credits(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    return $this->view->render($response, 'accueil/credits.twig');
+    return $response;
+  }
+
 }

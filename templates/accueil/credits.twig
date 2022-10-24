@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./css/credits.css" rel="stylesheet">
-    <title>Credits</title>
-</head>
-<body>
+{% extends 'base.twig' %}
+
+{% block title %}Unlock! - Scénario {% endblock %}
+{% block css %}css/credits.css{% endblock %}
+
+
+{% block body %}
     <div class="content">
         <h1 id="credits">Credits</h1>
         <div class="dev-div">
@@ -22,5 +19,4 @@
             <a href="https://github.com/Skyrolight/UnlockProject" target="_blank"><img src="./img/main-menu/github.png" alt="Unlock Image"></a>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

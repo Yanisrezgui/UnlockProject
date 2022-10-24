@@ -1,0 +1,33 @@
+{% extends 'base.twig' %}
+
+{% block title %}Unlock! - Scénario {% endblock %}
+{% block css %}css/scenario.css{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul class="menu">
+        <li><img src="img/nav/unlock-white.png" id="unlock-logo" alt="unlock"></li>
+        <li id="timer"><a href="">60:00</a></li>
+        <li id="indice"><a href="">Indice</a></li>
+        <li id="code"><a href="">Code</a></li>
+        <li id="machine"><a href="">Machine</a></li>
+        <li id="quitter"><a href="/">Quitter</a></li>
+    </ul>
+</nav>
+
+<div class="scenario-main">
+    <img src="img/Carte_Explication_Jeu.PNG" id="scenario-carte" alt="scenario-carte">
+    <div class="scenario-texte">
+        <h2>Scénario - L'Elite</h2>
+        <h3>Las Vegas, Nevada</h3>
+        <p id="p1">On vous mène à un homme en costume beige dans un couloir d’un hôtel casino.</p>
+        <p id="p2">Il vous parle en ces mots :</p>
+        <p id="p3">«Il paraît que vous êtes le top du top des services d’investigation. Coup de chance : c’est aujourd’hui que vous avez l’occasion de briller. <br>
+                    Derrière moi se trouve la planque d’un homme suspecté d’activités illicites : organisations de tournois clandestins, paris truqués et tricheries massives. <br>
+                    Infiltrez-vous dans sa chambre, trouvez les preuves permettant de l’inculper et ressortez rapidement.»</p>
+        <a href="/game" id="button-jouer">Jouer</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -8,8 +8,8 @@ a {
 }
 
 h1 {
-    font : bold 3.6em "Copperplate Gothic Bold", sans-serif;
-    width: 450px;
+    font : bold 6em "Copperplate Gothic Bold", sans-serif;
+    width: 600px;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
@@ -19,8 +19,8 @@ h1 {
 
 
 h2 {
-    font : bold 1.8em "Copperplate Gothic Bold", sans-serif;
-    width: 250px;
+    font : bold 2.5em "Copperplate Gothic Bold", sans-serif;
+    width: 350px;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
@@ -31,13 +31,14 @@ h2 {
 h3 {
     margin: 6px auto 6px auto;
     text-align: center;
+    font-size: 1.3em;
 } 
 
 img {
     display: block;
     margin-right: auto;
     margin-left: auto;
-    width:100px
+    width:150px
 }
 
 .github-div {

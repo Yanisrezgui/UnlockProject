@@ -13,6 +13,7 @@ use Slim\Views\Twig;
 use App\UserController;
 use App\UserService;
 use App\CardController;
+use App\AccueilController;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -59,6 +60,11 @@ $container->set(UserController::class, static function (ContainerInterface $cont
 $container->set(CardController::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
     return new CardController($view);
+});
+
+$container->set(AccueilController::class, static function (ContainerInterface $container) {
+    $view = $container->get('view');
+    return new AccueilController($view);
 });
 
 return $container;

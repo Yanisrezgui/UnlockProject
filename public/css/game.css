@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #920000;
+    margin:50px
+}
+
+.menu {
+    display:flex;
+    list-style: none;
+    align-items: center;
+    border: 3px solid #FFFFFF;
+}
+
+#timer {
+    flex: 3;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-left: 2px solid #FFFFFF;
+    padding-left: 3%;
+}
+
+#indice {
+    flex: 1;
+}
+
+#code {
+    flex: 1;
+}
+
+#machine {
+    flex: 1;
+}
+
+#quitter {
+    flex: 1;
+    border-left: 2px solid #FFFFFF;
+    padding-left: 3%;
+}
+
+.menu a {
+    text-decoration: none;
+    font-size: 2.5em;
+    color:#FFFFFF;
+}
+
+#unlock-logo {
+    width:250px;
+    height: 100px;
+}

@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    background-image: url("../img/image-background/hotel-image.jpg");
+}
+
 nav {
     background-color: #920000;
     margin:25px;
@@ -16,11 +20,11 @@ nav {
     border: 3px solid #FFFFFF;
 }
 
-
-
 #timer {
     flex: 3;
-    margin-left: 40px;
+    margin-left: 10px;
+    padding-left: 40px;
+    border-left: 3px solid #FFFFFF;
 }
 
 #indice {
@@ -35,18 +39,18 @@ nav {
     flex: 1;
 }
 
-#pipe {
-    font-size: 1.5em;
-}
-
 #quitter {
     flex: 1;
     margin-left: 25px;
 }
 
+.menu li {
+    font-size: 2.5em;
+    color:#FFFFFF;
+}
+
 .menu a {
     text-decoration: none;
-    font-size: 2.5em;
     color:#FFFFFF;
 }
 
@@ -61,7 +65,7 @@ nav {
 }
 
 .scenario-texte {
-    background-color: rgba(82, 82, 82, 0.77);
+    background-color: rgba(35, 35, 35, 0.77);
     margin-left: 10%;
     margin-right: 10%;
     color:white;

@@ -16,6 +16,10 @@
     </ul>
 </nav>
 
+{% for card in cards %}
+    <a href="{{card.getImageVerso()}}" target="_blank"><img src="{{card.getImageVerso()}}"></a>
+{% endfor %}
+
 <script src="index.js"></script>
 
 {% endblock %}

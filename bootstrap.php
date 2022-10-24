@@ -14,6 +14,7 @@ use App\UserController;
 use App\UserService;
 use App\CardController;
 use App\AccueilController;
+use App\GameController;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -65,6 +66,11 @@ $container->set(CardController::class, static function (ContainerInterface $cont
 $container->set(AccueilController::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
     return new AccueilController($view);
+});
+
+$container->set(GameController::class, static function (ContainerInterface $container) {
+    $view = $container->get('view');
+    return new GameController($view);
 });
 
 return $container;

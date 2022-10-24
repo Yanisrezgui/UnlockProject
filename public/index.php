@@ -16,12 +16,16 @@ $app = AppFactory::create();
 $app->add(TwigMiddleware::createFromContainer($app));
 
 
-$app->get('/', function (Request $request, Response $response, $args) {
+$app->get('/index', function (Request $request, Response $response, $args) {
     require('index.html');
 
     return $response;
 });
 
 $app->get('/Card', \App\CardController::class . ':CreateCard');
+$app->get('/', \App\AccueilController::class . ':Accueil');
+$app->get('/credits', \App\AccueilController::class . ':Credits');
+$app->get('/scenario', \App\CardController::class . ':Scenario');
+$app->get('/game', \App\CardController::class . ':Game');
 
 $app->run();

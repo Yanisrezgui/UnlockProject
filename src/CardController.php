@@ -66,4 +66,17 @@ class CardController
             ]);
           return $response;
       }
+
+      public function Scenario(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+      {
+        return $this->view->render($response, 'game/scenario.twig');
+        return $response;
+      }
+
+      public function Game(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+      {
+        return $this->view->render($response, 'game/game.twig');
+        return $response;
+      }
+    
 }

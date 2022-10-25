@@ -93,6 +93,8 @@ nav {
     overflow: auto;
     background-color: rgba(31, 31, 31, 0.72);
     margin-top: 20px;
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 .all-cards img {

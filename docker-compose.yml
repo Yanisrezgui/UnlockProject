@@ -1,6 +1,7 @@
 version: '3'
 services:
     php:
+      container_name: unlock-php
       build:
         context: ./.docker/php
       command: php -S 0.0.0.0:8080
@@ -13,6 +14,7 @@ services:
         - mariadb
 
     mariadb:
+      container_name: unlock-mariadb
       image: mariadb:latest
       restart: on-failure
       ports:

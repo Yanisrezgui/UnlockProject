@@ -21,11 +21,11 @@ class GameController
 
     public function start(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $monjeu = new Game(false, 0);
-        $monjeu->setScore(100);
-        $monjeu->setEnd(false);
+        $myGame = new Game();
+        $myGame->setEnd(false);
+        $myGame->setScore(0);
 
-        $this->em->persist($monjeu);
+        $this->em->persist($myGame);
         $this->em->flush();
 
         $cards = CardController::CreateCard();

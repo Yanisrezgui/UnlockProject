@@ -17,29 +17,28 @@ final class Card
     private int $id;
 
     #[Column(type: 'string', nullable:false)]
-    private string $id_card;
+    private string $idCard;
 
     #[Column(type: 'string', nullable: false)]
     private string $state;
 
     #[OneToMany(targetEntity: CardController::class, mappedBy: 'card')]
     #[Column(type: 'integer', nullable:false)]
-    private int $id_game;
+    private int $idGame;
     
-   
-    public function getId(): int
+   public function getId(): int
     {
         return $this->id;
     }
 
     public function getIdCard(): int
     {
-        return $this->id_card;
+        return $this->idCard;
     }
 
-    public function setIdCard(string $id_card)
+    public function setIdCard(string $idCard)
     {
-        $this->id_card = $id_card;
+        $this->idCard = $idCard;
     }
 
     public function getState(): bool
@@ -48,8 +47,15 @@ final class Card
     }
 
     public function setState(bool $state){
-        return $this->state=$state;
+        $this->state=$state;
     }
 
-    
+    public function getIdGame(): bool
+    {
+        return $this->idGame;
+    }
+
+    public function setIdGame(bool $idGame){
+        $this->idGame=$idGame;
+    }
 }

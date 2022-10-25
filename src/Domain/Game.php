@@ -12,18 +12,17 @@ use Doctrine\ORM\Mapping\Table;
 final class Game
 {
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
-    private int $id_game;
+    private int $idGame;
 
     #[Column(type: 'boolean', nullable: false)]
     private bool $end;
 
     #[Column(type: 'integer', nullable: false)]
     private int $score;
-
    
     public function getIdGame(): int
     {
-        return $this->id_game;
+        return $this->idGame;
     }
 
     public function getEnd(): bool

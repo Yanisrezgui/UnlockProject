@@ -21,12 +21,9 @@
         <img src="{{cards[0].getImageRecto()}}" id="carte-chambre" alt="Carte Chambre d'Hôtel">
     </div>
     <div class="all-cards">
-        <img src="{{cards[1].getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
-        <img src="{{cards[2].getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
-        <img src="{{cards[3].getImageRecto()}}"  alt="Carte Chambre d'Hôtel">
-        <img src="{{cards[4].getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
-        <img src="{{cards[5].getImageRecto()}}"  alt="Carte Chambre d'Hôtel">
-        <img src="{{cards[6].getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
+    {% for card in cards %}
+        <img src="{{card.getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
+    {% endfor %}
     </div>
 </div>
 

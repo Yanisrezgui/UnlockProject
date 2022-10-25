@@ -17,4 +17,7 @@ install-slim:
 install-psr:
 	@docker exec -d unlock-php composer require slim/psr7
 
+container-php:
+	@docker exec -it unlock-php bash
+
 

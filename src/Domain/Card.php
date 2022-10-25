@@ -26,13 +26,7 @@ final class Card
     #[Column(type: 'integer', nullable:false)]
     private int $id_game;
     
-    public function __construct(int $id_card, string $state, int $id_game)
-    {
-        $this->id_card = $id_card;
-        $this->state = $state;
-        $this->id_game = $id_game;
-    }
-
+   
     public function getId(): int
     {
         return $this->id;
@@ -43,13 +37,19 @@ final class Card
         return $this->id_card;
     }
 
+    public function setIdCard(string $id_card)
+    {
+        $this->id_card = $id_card;
+    }
+
     public function getState(): bool
     {
         return $this->state;
     }
 
-    public function getIdGame(): int
-    {
-        return $this->id_game;
+    public function setState(bool $state){
+        return $this->state=$state;
     }
+
+    
 }

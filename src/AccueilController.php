@@ -25,5 +25,4 @@ class AccueilController
     return $this->view->render($response, 'accueil/credits.twig');
     return $response;
   }
-
 }

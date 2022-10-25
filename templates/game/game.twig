@@ -22,9 +22,11 @@
     </div>
     <div class="all-cards">
     {% for card in cards %}
-        <img src="{{card.getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
+        <a href="/card/{{card.getNumber()}}"><img src="{{card.getImageVerso()}}"  alt="Carte Chambre d'Hôtel"></a>
     {% endfor %}
     </div>
+
+    <img src="{{carte_revers}}"  alt="Carte Chambre d'Hôtel">
 </div>
 
 <script src="index.js"></script>

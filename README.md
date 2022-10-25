@@ -29,7 +29,7 @@ Stop containers :
 ```
 make stop
 ```
-#### PHP Container
+#### Install Composer dependencies
 🐘 Connect to PHP Container
 ```
 make container-php:
@@ -44,4 +44,9 @@ composer require slim/slim:"4.*"
 ```
 composer require slim/psr7
 ```
+#### Database
 
+To Do (create DB - reset DB)
+
+## Link
+http://localhost:8080/

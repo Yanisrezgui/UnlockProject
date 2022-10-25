@@ -14,11 +14,3 @@ function diminuerTemps() {
 
 setInterval(diminuerTemps, 1000)
 
-/* let b1 = document.getElementById('b1');
-
-b1.addEventListener('click', message);
-
-function message(){
-    setTimeout(alert, 2000, 'Message d\'alerte après 2 secondes'); 
-} */
-

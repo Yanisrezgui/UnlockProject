@@ -44,7 +44,7 @@ return [
                 'host' => 'mariadb',
                 'port' => 3306,
                 'dbname' => 'UnlockDB',
-                'user' => 'user',
+                'user' => 'root',
                 'password' => 'root',
                 // 'charset' => 'UTF-8'
             ]

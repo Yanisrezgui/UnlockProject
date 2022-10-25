@@ -23,6 +23,7 @@ class GameController
     {
         $monjeu = new Game(false, 0);
         $monjeu->setScore(100);
+        $monjeu->setEnd(false);
 
         $this->em->persist($monjeu);
         $this->em->flush();

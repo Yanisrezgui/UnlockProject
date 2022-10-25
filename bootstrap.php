@@ -70,7 +70,9 @@ $container->set(AccueilController::class, static function (ContainerInterface $c
 
 $container->set(GameController::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
-    return new GameController($view);
+    return new GameController($view,$container->get(EntityManager::class));
 });
+
+
 
 return $container;

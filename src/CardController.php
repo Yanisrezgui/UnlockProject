@@ -5,7 +5,7 @@ namespace App;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
-use App\Domain\Card;
+use App\Construct\Card;
 
 class CardController
 {

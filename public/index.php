@@ -18,6 +18,6 @@ $app->add(TwigMiddleware::createFromContainer($app));
 $app->get('/', \App\AccueilController::class . ':Accueil');
 $app->get('/credits', \App\AccueilController::class . ':Credits');
 $app->get('/scenario', \App\CardController::class . ':Scenario');
-$app->get('/game', \App\GameController::class . ':Game');
+$app->get('/game', \App\GameController::class . ':start');
 
 $app->run();

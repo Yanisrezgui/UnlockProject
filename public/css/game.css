@@ -10,10 +10,13 @@ body {
     min-height: 100vh;
 }
 
+
+/* NAV BAR */
+
 nav {
     background-color: #920000;
     margin:25px;
-    padding:25px;
+    padding:15px 25px 15px 25px;
 }
 
 .menu {
@@ -73,3 +76,47 @@ nav {
     margin-top:10px;
     margin-left:20px
 }
+
+/* MAIN CONTENT */
+
+.game-main {
+    display:flex;
+}
+
+.chambre-card  {
+    margin: 20px 150px 0 100px;
+}
+
+.all-cards {
+    height: 700px;
+    width: 1130px;
+    overflow: auto;
+    background-color: rgba(31, 31, 31, 0.72);
+    margin-top: 20px;
+}
+
+.all-cards img {
+    height: 380px;
+    width: 210px;
+    margin-right: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

@@ -16,9 +16,19 @@
     </ul>
 </nav>
 
-{# {% for card in cards %}
-    <a href="{{card.getImageVerso()}}" target="_blank"><img src="{{card.getImageVerso()}}"></a>
-{% endfor %} #}
+<div class="game-main">
+    <div class="chambre-card">
+        <img src="{{cards[0].getImageRecto()}}" id="carte-chambre" alt="Carte Chambre d'Hôtel">
+    </div>
+    <div class="all-cards">
+        <img src="{{cards[1].getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
+        <img src="{{cards[2].getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
+        <img src="{{cards[3].getImageRecto()}}"  alt="Carte Chambre d'Hôtel">
+        <img src="{{cards[4].getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
+        <img src="{{cards[5].getImageRecto()}}"  alt="Carte Chambre d'Hôtel">
+        <img src="{{cards[6].getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
+    </div>
+</div>
 
 <script src="index.js"></script>
 

@@ -14,8 +14,8 @@ final class Game
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private int $id_game;
 
-    #[Column(type: 'bool', nullable: false)]
-    private string $end;
+    #[Column(type: 'boolean', nullable: false)]
+    private bool $end;
 
     #[Column(type: 'integer', nullable: false)]
     private int $score;

@@ -11,19 +11,19 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\OneToMany;
 
 #[Entity, Table(name: 'card')]
-final class Game
+final class Card
 {
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private int $id;
 
-    #[Id, Column(type: 'integer', nullable:false)]
-    private int $id_card;
+    #[Column(type: 'string', nullable:false)]
+    private string $id_card;
 
     #[Column(type: 'string', nullable: false)]
     private string $state;
 
     #[OneToMany(targetEntity: CardController::class, mappedBy: 'card')]
-    #[Id, Column(type: 'integer', nullable:false)]
+    #[Column(type: 'integer', nullable:false)]
     private int $id_game;
     
     public function __construct(int $id_card, string $state, int $id_game)

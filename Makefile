@@ -20,4 +20,7 @@ install-psr:
 container-php:
 	@docker exec -it unlock-php bash
 
+container-mariadb:
+	@docker exec -it unlock-mariadb bash
+
 

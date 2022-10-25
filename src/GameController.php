@@ -21,10 +21,8 @@ class GameController
 
     public function start(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $monjeu = new Game();
-        $monjeu->end=false;
-        $monjeu->score=0;
-        
+        $monjeu = new Game(false, 0);
+        $monjeu->setScore(100);
 
         $this->em->persist($monjeu);
         $this->em->flush();
@@ -32,20 +30,9 @@ class GameController
         $cards = CardController::CreateCard();
         
         return $this->view->render($response, 'game/game.twig', [
-            'cards' => $cards
+            'cards' => $cards,
         ]);
 
         return $response;
     }
-    
-   // public function game(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
-   // {
-   //     $cards = CardController::CreateCard();
-//
-   //     return $this->view->render($response, 'game/game.twig', [
-   //         'cards' => $cards
-   //     ]);
-//
-   //     return $response;
-   // }
 }

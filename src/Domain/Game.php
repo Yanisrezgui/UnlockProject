@@ -20,9 +20,10 @@ final class Game
     #[Column(type: 'integer', nullable: false)]
     private int $score;
 
-    public function getId(): int
+    public function __construct(bool $end, int $score)
     {
-        return $this->id;
+        $this->end = $end;
+        $this->score = $score;
     }
 
     public function getIdGame(): int
@@ -35,13 +36,18 @@ final class Game
         return $this->end;
     }
 
+    public function setEnd(bool $end)
+    {
+        $this->end = $end;
+    }
+
     public function getScore(): int
     {
         return $this->score;
     }
 
-    public function getTime(): int
+    public function setScore(int $score)
     {
-        return $this->time;
+        $this->score = $score;
     }
 }

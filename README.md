@@ -1,30 +1,47 @@
-# docker-compose PHP MariaDB slim4 Boilerplate
+# Unlock
 
-1. start and get logs
+## Requirements
 
+#### Linux / MacOS
+
+* Docker
+* docker-compose
+
+#### Windows
+
+* WSL 2
+* Docker
+* docker-compose
+
+## Start Project
+
+#### Building, running, and stopping Docker containers
+
+Build containers :
 ```
-docker-compose up
+make build
 ```
-
-2. open an new terminal and get into PHP container
-
+Start containers :
 ```
-docker-compose exec --workdir /app php /bin/bash
+make run
 ```
-
-3. within the PHP container, install compose dependencies
-
+Stop containers :
+```
+make stop
+```
+#### PHP Container
+🐘 Connect to PHP Container
+```
+make container-php:
+```
+Install Slim :
 ```
 composer update
 ```
+```
+composer require slim/slim:"4.*"
+```
+```
+composer require slim/psr7
+```
 
-4. slim app runs on http://localhost:8080
-
-
-
-
-
-
-
-php vendor/bin/doctrine make:migration
-docker-compose up --build 

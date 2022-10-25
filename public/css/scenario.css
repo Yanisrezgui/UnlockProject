@@ -5,6 +5,9 @@
 
 body {
     background-image: url("../img/image-background/hotel-image.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
 nav {
@@ -21,22 +24,14 @@ nav {
 }
 
 #timer {
-    flex: 3;
-    margin-left: 10px;
+    flex: 5;
+    margin-left: 20px;
     padding-left: 40px;
     border-left: 3px solid #FFFFFF;
-}
-
-#indice {
-    flex: 1;
-}
-
-#code {
-    flex: 1;
-}
-
-#machine {
-    flex: 1;
+    height:80px;
+    line-height: 2;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 #quitter {
@@ -57,7 +52,8 @@ nav {
 #unlock-logo {
     width:250px;
     height: 100px;
-    margin-right: 30px;
+    margin-top:10px;
+    margin-left:20px
 }
 
 .scenario-main {

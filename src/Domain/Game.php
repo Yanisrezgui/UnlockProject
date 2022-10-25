@@ -19,17 +19,6 @@ final class Game
 
     #[Column(type: 'integer', nullable: false)]
     private int $score;
-    
-    #[Column(type: 'integer', nullable: false)]
-    private int $time;
-
-    public function __construct(int $id_game, bool $end, int $score, int $time)
-    {
-        $this->id_game = $id_game;
-        $this->end = $end;
-        $this->score = $score;
-        $this->time = $time;
-    }
 
     public function getId(): int
     {

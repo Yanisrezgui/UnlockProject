@@ -1,9 +1,11 @@
 <?php
-namespace App;
+namespace App\Controller;
 
+use App\Services\UserService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
+
 
 
 class UserController

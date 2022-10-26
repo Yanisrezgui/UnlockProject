@@ -15,10 +15,10 @@ $app = AppFactory::create();
 
 $app->add(TwigMiddleware::createFromContainer($app));
 
-$app->get('/', \App\AccueilController::class . ':Accueil');
-$app->get('/credits', \App\AccueilController::class . ':Credits');
-$app->get('/scenario', \App\CardController::class . ':Scenario');
-$app->get('/game', \App\GameController::class . ':start');
-$app->get('/game/card/{id}', \App\GameController::class . ':flipCard');
+$app->get('/', \App\Controller\AccueilController::class . ':Accueil');
+$app->get('/credits', \App\Controller\AccueilController::class . ':Credits');
+$app->get('/scenario', \App\Controller\GameController::class . ':Scenario');
+$app->get('/game', \App\Controller\GameController::class . ':start');
+$app->get('/game/card/{id}', \App\Controller\GameController::class . ':flipCard');
 
 $app->run();

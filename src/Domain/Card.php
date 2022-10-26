@@ -50,7 +50,7 @@ final class Card
         return $this->id;
     }
 
-    public function getIdCard(): int
+    public function getIdCard(): string
     {
         return $this->idCard;
     }

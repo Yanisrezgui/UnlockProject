@@ -10,11 +10,11 @@ use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use UMA\DIC\Container;
 use Slim\Views\Twig;
-use App\UserController;
-use App\UserService;
-use App\CardController;
-use App\AccueilController;
-use App\GameController;
+use App\Controller\UserController;
+use App\Services\UserService;
+use App\Controller\AccueilController;
+use App\Controller\GameController;
+use App\Services\GameService;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -53,14 +53,13 @@ $container->set(UserService::class, static function (Container $c) {
     return new UserService($c->get(EntityManager::class));
 });
 
+$container->set(GameService::class, static function (Container $c) {
+    return new GameService($c->get(EntityManager::class));
+});
+
 $container->set(UserController::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
     return new UserController($view, $container->get(UserService::class));
-});
-
-$container->set(CardController::class, static function (ContainerInterface $container) {
-    $view = $container->get('view');
-    return new CardController($view);
 });
 
 $container->set(AccueilController::class, static function (ContainerInterface $container) {
@@ -70,7 +69,7 @@ $container->set(AccueilController::class, static function (ContainerInterface $c
 
 $container->set(GameController::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
-    return new GameController($view,$container->get(EntityManager::class));
+    return new GameController($view,$container->get(GameService::class),$container->get(EntityManager::class));
 });
 
 

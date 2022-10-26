@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Services;
 
 use Doctrine\ORM\EntityManager;
 use App\Domain\User;

@@ -1,8 +1,8 @@
 {% extends 'base.twig' %}
 
 {% block title %}Unlock! - Game {% endblock %}
-{% block css %}css/game.css{% endblock %}
-{% block modal %}css/modal.css{% endblock %}
+{% block css %}/css/game.css{% endblock %}
+{% block modal %}/css/modal.css{% endblock %}
 
 {% block body %}
 
@@ -10,7 +10,7 @@
     <ul class="menu">
         <details>
             <summary>
-                <li><img src="img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
+                <li><img src="/img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
                 <div class="details-modal-overlay"></div>
             </summary>
             <div class="details-modal" style="width: 420px;">
@@ -18,7 +18,7 @@
                     <h1>Scénario - L'élite </h1>
                 </div>
                 <div class="details-modal-content" style="width: 350px;">
-                    <img src="{{cards[0].getImageVerso()}}"  alt="carte : {{cards[0].getNumber()}}">
+                    <img src="{{cards[0].getImage()}}"  alt="carte : {{cards[0].getNumber()}}">
                 </div>
             </div>
         </details>
@@ -33,12 +33,12 @@
 
 <div class="game-main">
     <div class="chambre-card">
-        <img src="{{cards[0].getImageRecto()}}" id="carte-chambre" alt="Carte Chambre d'Hôtel">
+        <img src="{{cards[0].getImgRecto()}}" id="carte-chambre" alt="Carte Chambre d'Hôtel">
     </div>
     <div class="all-cards">
     {% for card in cards %}
-        {% if card.getNumber() != 1 %}
-            <img src="{{card.getImageVerso()}}"  alt="carte : {{card.getNumber()}}">
+        {% if card.getIdCard() != 1 %}
+            <a href="/game/card/{{card.getIdCard()}}"><img src="{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
         {% endif %}
     {% endfor %}
     </div>

@@ -23,7 +23,7 @@ final class GameService
 
         $partyId = $myGame->getIdGame();
 
-        $this->em->persist(new Card('1', "/img/card/Carte_Explication_Jeu.PNG", "img/card/Carte_Explication_Jeu.PNG", "verso", "introduction", $partyId));
+        $this->em->persist(new Card('1', "/img/card/Carte_Intro.PNG", "img/card/Carte_Explication_Jeu.PNG", "verso", "introduction", $partyId));
         $this->em->persist(new Card('K', "img/card/CarteK_recto.PNG", "img/card/CarteK_verso.PNG", "verso", "penalty", $partyId));
         $this->em->persist(new Card('79', "img/card/Carte79_recto.PNG", "img/card/Carte79_verso.PNG", "verso", "penalty", $partyId));
         $this->em->persist(new Card('M', "img/card/CarteM_recto.PNG", "img/card/CarteM_verso.PNG", "verso", "gris", $partyId));

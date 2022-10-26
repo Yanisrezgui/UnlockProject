@@ -38,7 +38,7 @@
     <div class="all-cards">
     {% for card in cards %}
         {% if card.getIdCard() != 1 %}
-            <a href="/game/card/{{card.getIdCard()}}"><img src="{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+            <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
         {% endif %}
     {% endfor %}
     </div>

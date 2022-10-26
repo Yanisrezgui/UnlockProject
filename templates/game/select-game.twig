@@ -1,0 +1,12 @@
+{% extends 'base.twig' %}
+
+{% block title %}Unlock! - Select game{% endblock %}
+{% block css %}css/main-menu.css{% endblock %}
+
+{% block body %}
+    <div class="content">
+        {% for game in games %}
+            <div class="button-text"><a href="/game/{{game.getIdGame()}}">Partie {{game.getIdGame()}} </a></div>
+        {% endfor %}
+    </div>
+{% endblock %} 

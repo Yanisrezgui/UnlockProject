@@ -19,6 +19,12 @@ final class Game
 
     #[Column(type: 'integer', nullable: false)]
     private int $score;
+
+    public function __construct($end, $score)
+    {
+        $this->end = $end;
+        $this->score = $score;
+    }
    
     public function getIdGame(): int
     {

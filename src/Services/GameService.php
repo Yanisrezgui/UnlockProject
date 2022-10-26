@@ -16,10 +16,8 @@ final class GameService
 
     public function newGame(): Game
     {
-        $myGame = new Game();
-        $myGame->setEnd(false);
-        $myGame->setScore(0);
-
+        $myGame = new Game(false, 0);
+        
         $this->em->persist($myGame);
         $this->em->flush();
 

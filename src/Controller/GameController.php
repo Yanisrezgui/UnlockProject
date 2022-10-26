@@ -21,23 +21,47 @@ class GameController
         $this->em = $em;
     }
 
-    public function Scenario(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    public function newGame(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-    return $this->view->render($response, 'game/scenario.twig');
-    return $response;
+        $this->gameService->newGame();
+
+        $repository = $this->em->getRepository(Game::class);
+        $game = $repository->findOneBy(
+            array('end' => false),
+            array('idGame' => 'DESC')
+        );
+
+        return $this->view->render($response, 'game/scenario.twig', [
+            'game' => $game
+        ]);
+        return $response;
+    }
+
+    public function selectGame(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $repository = $this->em->getRepository(Game::class);
+        $games = $repository->findBy([
+            'end' => false
+        ]);
+
+        return $this->view->render($response, 'game/select-game.twig', [
+            'games' => $games
+        ]);
+        return $response;
     }
 
     public function start(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $this->gameService->newGame();
+        $idGame = $args['id'];
 
         $repository = $this->em->getRepository(Card::class);
         $cards = $repository->findBy([
-            'idGame' => 51
+            'idGame' => $idGame
         ]);
 
         return $this->view->render($response, 'game/game.twig', [
             'cards' => $cards,
+            'idGame' => $idGame
         ]);
 
         return $response;
@@ -45,12 +69,13 @@ class GameController
 
     public function flipCard(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $idCard = $args['id'];
+        $idGame= $args['idGame'];
+        $idCard = $args['idCard'];
 
         $repository = $this->em->getRepository(Card::class);
         $card = $repository->findOneBy([
             'idCard' => $idCard,
-            'idGame' => 50
+            'idGame' => $idGame
         ]);
         $card->setState('recto');
 
@@ -59,12 +84,11 @@ class GameController
 
         $repository = $this->em->getRepository(Card::class);
         $cards = $repository->findBy([
-            'idGame' => 50
+            'idGame' => $idGame
         ]);
 
         return $this->view->render($response, 'game/watch-card.twig', [
-            'card' => $card,
+            'cards' => $cards,
         ]);
-
     }
 }

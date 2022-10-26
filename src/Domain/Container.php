@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UMA\DIC;
+namespace UMA\DIC\Domain;
 
 use Closure;
 use LogicException;

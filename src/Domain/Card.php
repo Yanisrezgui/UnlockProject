@@ -89,6 +89,7 @@ final class Card
         $this->state = $state;
     }
 
+
     public function getType(): string
     {
         return $this->type;

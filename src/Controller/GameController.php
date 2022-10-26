@@ -82,13 +82,8 @@ class GameController
         $this->em->persist($card);
         $this->em->flush();
 
-        $repository = $this->em->getRepository(Card::class);
-        $cards = $repository->findBy([
-            'idGame' => $idGame
-        ]);
-
-        return $this->view->render($response, 'game/watch-card.twig', [
-            'cards' => $cards,
-        ]);
+        return $response
+          ->withHeader('Location', '/game/'.$idGame)
+          ->withStatus(302);
     }
 }

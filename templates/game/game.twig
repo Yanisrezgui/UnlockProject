@@ -18,7 +18,7 @@
                     <h1>Scénario - L'élite </h1>
                 </div>
                 <div class="details-modal-content" style="width: 350px;">
-                    <img src="{{cards[0].getImage()}}"  alt="carte : {{cards[0].getNumber()}}">
+                    <img src="/{{cards[0].getImage()}}"  alt="carte : {{cards[0].getNumber()}}">
                 </div>
             </div>
         </details>
@@ -33,12 +33,12 @@
 
 <div class="game-main">
     <div class="chambre-card">
-        <img src="{{cards[0].getImgRecto()}}" id="carte-chambre" alt="Carte Chambre d'Hôtel">
+        <img src="/{{cards[0].getImgRecto()}}" id="carte-chambre" alt="Carte Chambre d'Hôtel">
     </div>
     <div class="all-cards">
     {% for card in cards %}
         {% if card.getIdCard() != 1 %}
-            <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+            <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
         {% endif %}
     {% endfor %}
     </div>

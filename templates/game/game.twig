@@ -2,12 +2,26 @@
 
 {% block title %}Unlock! - Game {% endblock %}
 {% block css %}css/game.css{% endblock %}
+{% block modal %}css/modal.css{% endblock %}
 
 {% block body %}
 
 <nav>
     <ul class="menu">
-        <li><img src="img/nav/unlock-white.png" id="unlock-logo" alt="unlock"></li>
+        <details>
+            <summary>
+                <li><img src="img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
+                <div class="details-modal-overlay"></div>
+            </summary>
+            <div class="details-modal" style="width: 420px;">
+                <div class="details-modal-title">
+                    <h1>Scénario - L'élite </h1>
+                </div>
+                <div class="details-modal-content" style="width: 350px;">
+                    <img src="{{cards[0].getImageVerso()}}"  alt="carte : {{cards[0].getNumber()}}">
+                </div>
+            </div>
+        </details>
         <li id="timer">60:00</li>
         <li id="indice"><a href="">Indice</a></li>
         <li id="code"><a href="">Code</a></li>
@@ -16,13 +30,16 @@
     </ul>
 </nav>
 
+
 <div class="game-main">
     <div class="chambre-card">
         <img src="{{cards[0].getImageRecto()}}" id="carte-chambre" alt="Carte Chambre d'Hôtel">
     </div>
     <div class="all-cards">
     {% for card in cards %}
-        <img src="{{card.getImageVerso()}}"  alt="Carte Chambre d'Hôtel">
+        {% if card.getNumber() != 1 %}
+            <img src="{{card.getImageVerso()}}"  alt="carte : {{card.getNumber()}}">
+        {% endif %}
     {% endfor %}
     </div>
 </div>

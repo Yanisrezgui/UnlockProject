@@ -51,5 +51,4 @@ final class Card
         return $this->state=$state;
     }
 
-    
 }

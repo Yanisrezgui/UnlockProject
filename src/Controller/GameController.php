@@ -8,7 +8,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 use App\Domain\Card;
 use App\Domain\Game;
-use Slim\Routing\RouteContext;
 use App\Services\GameService;
 use Doctrine\ORM\EntityManager;
 

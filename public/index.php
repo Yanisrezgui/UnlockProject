@@ -19,5 +19,6 @@ $app->get('/', \App\AccueilController::class . ':Accueil');
 $app->get('/credits', \App\AccueilController::class . ':Credits');
 $app->get('/scenario', \App\CardController::class . ':Scenario');
 $app->get('/game', \App\GameController::class . ':start');
+$app->get('/game/card/{id}', \App\GameController::class . ':flipCard');
 
 $app->run();

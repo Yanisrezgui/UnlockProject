@@ -68,18 +68,15 @@ class GameController
         $repository = $this->em->getRepository(Card::class);
         $card = $repository->findOneBy([
             'idCard' => $idCard,
-            'idGame' => 4
+            'idGame' => 30
         ]);
         $card->setState('verso');
 
         $this->em->persist($card);
         $this->em->flush();
-
-        $img = $card->getImage();
         
         return $this->view->render($response, 'game/game.twig', [
-            // 'cards' => $cards,
-            'carte_revers' => $img
+            'card' => $card,
         ]);
 
         return $response;

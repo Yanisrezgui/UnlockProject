@@ -1,13 +1,13 @@
 {% extends 'base.twig' %}
 
 {% block title %}Unlock! - Game {% endblock %}
-{% block css %}css/game.css{% endblock %}
+{% block css %}/css/game.css{% endblock %}
 
 {% block body %}
 
 <nav>
     <ul class="menu">
-        <li><img src="img/nav/unlock-white.png" id="unlock-logo" alt="unlock"></li>
+        <li><img src="/img/nav/unlock-white.png" id="unlock-logo" alt="unlock"></li>
         <li id="timer">60:00</li>
         <li id="indice"><a href="">Indice</a></li>
         <li id="code"><a href="">Code</a></li>
@@ -17,16 +17,7 @@
 </nav>
 
 <div class="game-main">
-    <div class="chambre-card">
-        <img src="{{cards[0].getImageRecto()}}" id="carte-chambre" alt="Carte Chambre d'Hôtel">
-    </div>
-    <div class="all-cards">
-    {% for card in cards %}
-        <a href="/card/{{card.getNumber()}}"><img src="{{card.getImageVerso()}}"  alt="Carte Chambre d'Hôtel"></a>
-    {% endfor %}
-    </div>
-
-    <img src="{{carte_revers}}"  alt="Carte Chambre d'Hôtel">
+    <img src="/{{card.getImgRecto()}}"  alt="{{card.getId()}}">
 </div>
 
 <script src="index.js"></script>

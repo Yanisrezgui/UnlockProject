@@ -2,23 +2,25 @@
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManager;
+
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 use App\Domain\Card;
 use App\Domain\Game;
+use Slim\Routing\RouteContext;
 use App\Services\GameService;
+use Doctrine\ORM\EntityManager;
 
 class GameController
 {
     private $view;
     private $em;
 
-    public function __construct(Twig $view, GameService $gameService, EntityManager $em)  {
+    public function __construct(Twig $view, GameService $gameService,EntityManager $em)  {
         $this->view = $view;
         $this->gameService = $gameService;
-        $this->em = $em;
+        $this->em=$em;
     }
 
     public function Scenario(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
@@ -29,11 +31,11 @@ class GameController
 
     public function start(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $this->gameService->newGame();
+        //$this->gameService->newGame();
 
-        $repository = $this->em->getRepository(Card::class);
-        $cards = $repository->findBy([
-            'idGame' => 51
+        $repository=$this->em->getRepository(Card::class);
+        $cards=$repository->findBy([
+            'idGame' => 11
         ]);
 
         return $this->view->render($response, 'game/game.twig', [
@@ -50,21 +52,17 @@ class GameController
         $repository = $this->em->getRepository(Card::class);
         $card = $repository->findOneBy([
             'idCard' => $idCard,
-            'idGame' => 50
+            'idGame' => 11
         ]);
         $card->setState('recto');
 
         $this->em->persist($card);
         $this->em->flush();
+ 
+        return $response
+          ->withHeader('Location', '/game')
+          ->withStatus(302);
 
-        $repository = $this->em->getRepository(Card::class);
-        $cards = $repository->findBy([
-            'idGame' => 50
-        ]);
-
-        return $this->view->render($response, 'game/watch-card.twig', [
-            'card' => $card,
-        ]);
 
     }
 }

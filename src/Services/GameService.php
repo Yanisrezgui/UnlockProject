@@ -46,7 +46,9 @@ final class GameService
         $this->em->persist(new Card('47', "img/card/Carte47_recto.PNG", "img/card/Carte47_verso.PNG", "verso", "gris", $partyId));
         $this->em->persist(new Card('73', "img/card/Carte73_recto.PNG", "img/card/Carte73_verso.PNG", "verso", "jaune", $partyId));
         $this->em->flush();
-
+        
         return $myGame;
     }
+
+    
 }

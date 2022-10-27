@@ -9,16 +9,19 @@ use Slim\Views\Twig;
 use App\Domain\Card;
 use App\Domain\Game;
 use App\Services\GameService;
+use App\Services\ConditionService;
 
 class GameController
 {
     private $view;
     private $em;
     private $gameService;
+    private $conditionService;
 
-    public function __construct(Twig $view, GameService $gameService, EntityManager $em)  {
+    public function __construct(Twig $view, GameService $gameService, ConditionService $conditionService,EntityManager $em)  {
         $this->view = $view;
         $this->gameService = $gameService;
+        $this->conditionService = $conditionService;
         $this->em = $em;
     }
 
@@ -54,11 +57,20 @@ class GameController
     public function deleteGame(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $idGame = $args['idGame'];
-        $repository = $this->em->getRepository(Game::class);
-        $game = $repository->findOneBy([
+
+        //Supprime la partie sélectionner dans la BDD
+        $repositoryGame = $this->em->getRepository(Game::class);
+        $game = $repositoryGame->findOneBy([
             'end' => false,
             'idGame' => $idGame
         ]);
+
+        //Supprime toutes les cartes associées à la partie supprimé dans la BDD
+        $repositoryCard = $this->em->getRepository(Card::class);
+        $cards = $repositoryCard->findBy(['idGame' => $idGame]);
+        foreach($cards as $card) {
+            $this->em->remove($card);
+        }
 
         $this->em->remove($game);
         $this->em->flush();
@@ -95,10 +107,15 @@ class GameController
             'idCard' => $idCard,
             'idGame' => $idGame
         ]);
-        $card->setState('recto');
+        
+        $this->conditionService->checkCanBeFlip($card);
 
-        $this->em->persist($card);
-        $this->em->flush();
+        if ($card->getCanBeFlip() == 'true') {
+            $card->setState('recto');
+
+            $this->em->persist($card);
+            $this->em->flush();
+        }
 
         return $response
             ->withHeader('Location', '/game/'.$idGame)

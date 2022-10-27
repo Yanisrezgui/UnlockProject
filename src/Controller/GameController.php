@@ -104,4 +104,14 @@ class GameController
             ->withHeader('Location', '/game/'.$idGame)
             ->withStatus(302);
     }
+
+    public function code(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $idGame = $args['idGame'];
+        $params = $request->getParsedBody()['code'];
+
+        return $response
+            ->withHeader('Location', '/game/'.$idGame .'?='. $params)
+            ->withStatus(302);
+    }
 }

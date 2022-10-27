@@ -22,5 +22,6 @@ $app->get('/game/delete-game/{idGame}', \App\Controller\GameController::class . 
 $app->get('/game/{id}', \App\Controller\GameController::class . ':start');
 $app->get('/game/{idGame}/card/{idCard}', \App\Controller\GameController::class . ':flipCard');
 $app->get('/select-game', \App\Controller\GameController::class . ':selectGame');
+$app->post('/game/{idGame}', \App\Controller\GameController::class . ':code');
 
 $app->run();

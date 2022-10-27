@@ -14,6 +14,7 @@ class GameController
 {
     private $view;
     private $em;
+    private $gameService;
 
     public function __construct(Twig $view, GameService $gameService, EntityManager $em)  {
         $this->view = $view;
@@ -50,6 +51,23 @@ class GameController
         return $response;
     }
 
+    public function deleteGame(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $idGame = $args['idGame'];
+        $repository = $this->em->getRepository(Game::class);
+        $game = $repository->findOneBy([
+            'end' => false,
+            'idGame' => $idGame
+        ]);
+
+        $this->em->remove($game);
+        $this->em->flush();
+
+        return $response
+            ->withHeader('Location', '/select-game')
+            ->withStatus(302);
+    }
+
     public function start(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $idGame = $args['id'];
@@ -83,7 +101,7 @@ class GameController
         $this->em->flush();
 
         return $response
-          ->withHeader('Location', '/game/'.$idGame)
-          ->withStatus(302);
+            ->withHeader('Location', '/game/'.$idGame)
+            ->withStatus(302);
     }
 }

@@ -31,17 +31,25 @@ final class Card
     #[Column(type: 'string', nullable: false)]
     private string $type;
 
+    #[Column(type: 'boolean', nullable: false)]
+    private bool $canBeFlip;
+
+    #[Column(type: 'boolean', nullable: false)]
+    private bool $canBeDestroy;
+
     #[OneToMany(targetEntity: CardController::class, mappedBy: 'card')]
     #[Column(type: 'integer', nullable:false)]
     private int $idGame;
 
-    public function __construct($idCard, $imgRecto, $imgVerso, $state, $type, $idGame)
+    public function __construct($idCard, $imgRecto, $imgVerso, $state, $type, $canBeFlip, $canBeDestroy, $idGame)
     {
         $this->idCard = $idCard;
         $this->imgRecto = $imgRecto;
         $this->imgVerso = $imgVerso;
         $this->state = $state;
         $this->type = $type;
+        $this->canBeFlip = $canBeFlip;
+        $this->canBeDestroy = $canBeDestroy;
         $this->idGame = $idGame;
     }
     
@@ -89,7 +97,6 @@ final class Card
         $this->state = $state;
     }
 
-
     public function getType(): string
     {
         return $this->type;
@@ -98,6 +105,26 @@ final class Card
     public function setType(string $type)
     {
         $this->type = $type;
+    }
+
+    public function getCanBeFlip(): bool
+    {
+        return $this->canBeFlip;
+    }
+
+    public function setCanBeFlip(bool $canBeFlip)
+    {
+        $this->canBeFlip = $canBeFlip;
+    }
+    
+    public function getCanBeDestroy(): bool
+    {
+        return $this->canBeDestroy;
+    }
+
+    public function setCanBeDestroy(bool $canBeDestroy)
+    {
+        $this->canBeDestroy = $canBeDestroy;
     }
 
     public function getIdGame(): int

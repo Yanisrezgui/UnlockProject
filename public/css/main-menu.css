@@ -21,7 +21,7 @@ a:hover {
     color:white;
 }
 
-h1, .button-text {
+h1 {
     font : bold 2em "Copperplate Gothic Bold", sans-serif;
     font-size: 2.3em;
     border: 2px solid black;
@@ -33,6 +33,6 @@ h1, .button-text {
 
 }
 
-h1:hover, .button-text:hover {
+h1:hover {
     background-color: black;
 }

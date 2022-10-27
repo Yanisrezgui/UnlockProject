@@ -24,7 +24,25 @@
         </details>
         <li id="timer">60:00</li>
         <li id="indice"><a href="">Indice</a></li>
-        <li id="code"><a href="">Code</a></li>
+        <details>
+            <summary>
+                <li id="code" class="button">Code</li>
+                <div class="details-modal-overlay"></div>
+            </summary>
+            <div class="details-modal" style="width: 420px;">
+                <div class="details-modal-title">
+                    <h1>Code</h1>
+                </div>
+                <div class="details-modal-content" style="width: 350px;">
+                <h1>Entrez le code : </h1>
+                <br>
+                <input type"text" id="inputCode" name="inputCode"/>
+                <br>
+                {% set code = '' %}
+                <button><a href="/game/{{idGame}}/{{code}}" style="color:black">Validé le code</a></button>
+                </div>
+            </div>
+        </details>
         <li id="machine"><a href="">Machine</a></li>
         <li id="quitter"><a href="/">Quitter</a></li>
     </ul>

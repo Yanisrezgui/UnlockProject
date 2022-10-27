@@ -86,4 +86,14 @@ class GameController
           ->withHeader('Location', '/game/'.$idGame)
           ->withStatus(302);
     }
+
+    public function code(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+            $code = $args['code'];
+            $response->getBody()->write("le code taper est : $code");
+
+      return $response;
+
+          
+    }
 }

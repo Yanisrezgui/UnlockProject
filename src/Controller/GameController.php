@@ -89,11 +89,15 @@ class GameController
 
     public function code(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-            $code = $args['code'];
+            $idGame= $args['idGame'];
+
+            $code = $request -> getParsedBody()['code'];
             $response->getBody()->write("le code taper est : $code");
 
-      return $response;
-
-          
+            if($code==0){
+                return $response
+          ->withHeader('Location', '/game/'.$idGame)
+          ->withStatus(302);
+            }    
     }
 }

@@ -89,15 +89,30 @@ class GameController
 
     public function code(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-            $idGame= $args['idGame'];
 
             $code = $request -> getParsedBody()['code'];
-            $response->getBody()->write("le code taper est : $code");
 
-            if($code==0){
-                return $response
-          ->withHeader('Location', '/game/'.$idGame)
-          ->withStatus(302);
-            }    
+            if($code==2002){
+                  $response->getBody()->write("Bravo vous avez déverrouiller l'ordinateur, vous pouvez désormais retourner la carte 47");  
+            }  
+            else if($code==1769){
+                 $response->getBody()->write("Bravo vous avez déverrouiller le cadena, vous pouvez désormais retourner la carte C");  
+            }
+            else if($code==6504){
+                 $response->getBody()->write("Bravo vous avez coupé les bon cables, vous avez fini le jeu");  
+            }
+            else if($code==6666){
+                 $response->getBody()->write("La bombe est amorcée, le timer passe il vous reste 30 minutes");  
+            }
+            else if($code==9999){
+                 $response->getBody()->write("Fichier audio : morse");  
+            }
+            else{
+                $response->getBody()->write("Code faux : vous obtenez une pénalité");  
+
+            }
+            
+            return $response;
+
     }
 }

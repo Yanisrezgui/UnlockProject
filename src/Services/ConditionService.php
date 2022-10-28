@@ -4,11 +4,12 @@ namespace App\Services;
 use App\Domain\Card;
 use Doctrine\ORM\EntityManager;
 
-final class ConditionService
+class ConditionService
 {
 
-    public function __construct(EntityManager $em)
-    {
+    private $em;
+
+    public function __construct(EntityManager $em)  {
         $this->em = $em;
     }
 
@@ -60,6 +61,20 @@ final class ConditionService
                 }
             }
         }
+    }
+
+
+    public function code($idCard, $idGame){
+        $repository = $this->em->getRepository(Card::class);
+            $card = $repository->findOneBy([
+                'idCard' => $idCard,
+                'idGame' => $idGame
+            ]);
+            $card->setCanBeFlip(true);
+            $this->em->persist($card);
+            $this->em->flush();
+
+            return $card;
     }
 
 }

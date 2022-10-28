@@ -18,7 +18,8 @@ class GameController
     private $gameService;
     private $conditionService;
 
-    public function __construct(Twig $view, GameService $gameService, ConditionService $conditionService,EntityManager $em)  {
+    public function __construct(Twig $view, GameService $gameService, ConditionService $conditionService, EntityManager $em)
+    {
         $this->view = $view;
         $this->gameService = $gameService;
         $this->conditionService = $conditionService;
@@ -68,7 +69,7 @@ class GameController
         //Supprime toutes les cartes associées à la partie supprimé dans la BDD
         $repositoryCard = $this->em->getRepository(Card::class);
         $cards = $repositoryCard->findBy(['idGame' => $idGame]);
-        foreach($cards as $card) {
+        foreach ($cards as $card) {
             $this->em->remove($card);
         }
 
@@ -107,8 +108,13 @@ class GameController
             'idCard' => $idCard,
             'idGame' => $idGame
         ]);
+<<<<<<< HEAD
         
         $this->conditionService->checkCanBeFlip($card, $idGame);
+=======
+
+        $this->conditionService->checkCanBeFlip($card);
+>>>>>>> 550da8c716fba3122e097bf42ac05d6fc6835c1a
 
         if ($card->getCanBeFlip() == 'true') {
             $card->setState('recto');
@@ -124,11 +130,19 @@ class GameController
 
     public function code(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $idGame = $args['idGame'];
-        $params = $request->getParsedBody()['code'];
-
-        return $response
-            ->withHeader('Location', '/game/'.$idGame .'?='. $params)
-            ->withStatus(302);
+        $code = $request -> getParsedBody()['code'];
+        $idGame= $args['idGame'];
+        if ($code == 2002) {
+            $card=$this->conditionService->code(47, $idGame);
+        } elseif ($code == 1769) {
+            $card= $this->conditionService->code('C', $idGame);
+        } elseif ($code == 6504) {
+        } elseif ($code == 9999) {
+        } else {
+        }
+        return $this->view->render($response, 'game/code.twig', [
+            'card' => $card,
+            'idGame' => $idGame
+        ]);
     }
 }

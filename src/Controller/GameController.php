@@ -131,6 +131,7 @@ class GameController
             $card=$this->conditionService->code(47, $idGame);
         } elseif ($code == 1769) {
             $card= $this->conditionService->code('C', $idGame);
+            $this->conditionService->canBeDiscard($idGame);
         } elseif ($code == 6504) {
         } elseif ($code == 9999) {
         } else {

@@ -8,9 +8,11 @@ class ConditionService
 {
 
     private $em;
+    private $repository;
 
     public function __construct(EntityManager $em)  {
         $this->em = $em;
+        $this->repository = $em->getRepository(Card::class);
     }
 
     public function checkCanBeFlip(Card $card, $idGame)
@@ -52,13 +54,29 @@ class ConditionService
     public function flipCardStepThree(Card $card, Array $cards) {
         if($card->getIdCard() == '85') {
             foreach($cards as $id) {
-                if($id->getIdCard() == '22') {
+                if($id->getIdCard() == '21') {
                     $card->setCanBeFlip(true);
                     $id->setCanBeDiscard(true);
                 }
-                if ($id->getIdCard() == '63') {
+                if ($id->getIdCard() == '83') {
                     $id->setCanBeDiscard(true);
                 }
+            }
+        }
+    }
+
+    //Carte C retourné, si 22 & 63 retourné + defaussable
+    public function canBeDiscard($idGame) {
+        $cards = $this->repository->findBy([
+            'state' => 'recto',
+            'idGame' => $idGame,
+        ]);
+        foreach($cards as $id) {
+            if($id->getIdCard() == '21') {
+                $id->setCanBeDiscard(true);
+            }
+            if ($id->getIdCard() == '80') {
+                $id->setCanBeDiscard(true);
             }
         }
     }

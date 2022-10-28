@@ -1,6 +1,6 @@
 {% extends 'base.twig' %}
 
-{% block title %}Unlock! - Code {% endblock %}
+{% block title %}Unlock! - Hint {% endblock %}
 {% block css %}/css/game.css{% endblock %}
 {% block modal %}/css/modal.css{% endblock %}
 {% block body %}
@@ -10,6 +10,11 @@
     </ul>
 </nav>
 <div class="game-main">
-    <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+        <p>
+            {{textHint}}
+        </p>
+<div class="button">
+        <a href="/game/{{idGame}}">Retour</a>
+        </div>
 </div>
 {% endblock %}

@@ -135,10 +135,56 @@ class GameController
         } elseif ($code == 6504) {
         } elseif ($code == 9999) {
         } else {
-        }
+            return $response
+                ->withHeader('Location', '/game/'.$idGame)
+                ->withStatus(302);
+        } 
+
         return $this->view->render($response, 'game/code.twig', [
             'card' => $card,
             'idGame' => $idGame
+        ]);
+    }
+
+    public function hint(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $idGame= $args['idGame'];
+        $idTextHint = $request -> getParsedBody()['hint'];
+        $textHint = '';
+
+        if ($idTextHint == 4) {
+            $textHint = $response->getBody()->write("Il ressemble à la photo de l'ordinateur. Visiblement, il avait 7 ans en 2009.");
+        } elseif ($idTextHint == 21) {
+            $textHint = $response->getBody()->write("Il semble manquer des cartes. Et qu'essaye de nous dire le Joker ?");
+        } elseif ($idTextHint == 22) {
+            $textHint = $response->getBody()->write("Il doit bien y avoir des vis quelque part...");
+        } elseif ($idTextHint == 32) {
+            $textHint = $response->getBody()->write("Elle ne sert à rien sans téléphone.");
+        } elseif ($idTextHint == 35) {
+            $textHint = $response->getBody()->write("Il faut le brancher avant toute chose...");
+        } elseif ($idTextHint == 42) {
+            $textHint = $response->getBody()->write("Cela ressemble à la serrure de la bombe !");
+        } elseif ($idTextHint == 47) {
+            $textHint = $response->getBody()->write("Il y a un fichier sur l'écran. Et ce fond d'écran est étrange : 1 et 0, ce sont peut être des positions ?");
+        } elseif ($idTextHint == 50) {
+            $textHint = $response->getBody()->write("Je crois qu'il y a une photo sous le permis de conduire.");
+        } elseif ($idTextHint == 60) {
+            $textHint = $response->getBody()->write("Peut-être que le code Morse peut vous aider à choisir ?");
+        } elseif ($idTextHint == 63) {
+            $textHint = $response->getBody()->write("Il y a peut-être quelque chose derrière, il faut dévisser cette grille.");
+        } elseif ($idTextHint == 67) {
+            $textHint = $response->getBody()->write("Il y a 4 groupes : d'abord Trait Trait Trait puis Point Trait Point et encore 2 autres.");
+        } elseif ($idTextHint == 73) {
+            $textHint = $response->getBody()->write("Notre suspect semble aimer beaucoup son enfant. Le code a sûrement un rapport avec cela...");
+        } elseif ($idTextHint == 80) {
+            $textHint = $response->getBody()->write("Il semble manquer des cartes. Et qu'essaye de nous dire le Joker ?");
+        } elseif ($idTextHint == 85) {
+            $textHint = $response->getBody()->write("Il faut sûrement baisser certains de ces interrupteurs pour obtenir un nombre rouge, mais lesquels ?");
+        }
+
+        return $this->view->render($response, 'game/code.twig', [
+            'idGame' => $idGame,
+            'textHint' => $textHint
         ]);
     }
 }

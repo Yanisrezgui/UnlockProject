@@ -43,10 +43,9 @@ $container->set(EntityManager::class, static function (Container $c): EntityMana
 
 
 $container->set('view', function () {
-    return Twig::create(
-        __DIR__ . '/templates',
-        ['cache' => false]
-    );
+    $twig = Twig::create('../templates', ['debug' => true]);
+	$twig->addExtension(new \Twig\Extension\DebugExtension());
+	return $twig;
 });
 
 

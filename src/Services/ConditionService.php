@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Domain\Card;
@@ -10,7 +11,8 @@ class ConditionService
     private $em;
     private $repository;
 
-    public function __construct(EntityManager $em)  {
+    public function __construct(EntityManager $em)
+    {
         $this->em = $em;
         $this->repository = $em->getRepository(Card::class);
     }
@@ -81,18 +83,17 @@ class ConditionService
         }
     }
 
-
-    public function code($idCard, $idGame){
+    public function code($idCard, $idGame)
+    {
         $repository = $this->em->getRepository(Card::class);
-            $card = $repository->findOneBy([
-                'idCard' => $idCard,
-                'idGame' => $idGame
-            ]);
-            $card->setCanBeFlip(true);
-            $this->em->persist($card);
-            $this->em->flush();
+        $card = $repository->findOneBy([
+            'idCard' => $idCard,
+            'idGame' => $idGame
+        ]);
+        $card->setCanBeFlip(true);
+        $this->em->persist($card);
+        $this->em->flush();
 
-            return $card;
+        return $card;
     }
-
 }

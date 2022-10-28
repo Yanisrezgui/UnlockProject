@@ -126,11 +126,7 @@ class GameController
     public function code(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $code = $request -> getParsedBody()['code'];
-
-
         $idGame= $args['idGame'];
-
-
         if ($code == 2002) {
             $card=$this->conditionService->code(47, $idGame);
         } elseif ($code == 1769) {
@@ -139,7 +135,6 @@ class GameController
         } elseif ($code == 9999) {
         } else {
         }
-
         return $this->view->render($response, 'game/code.twig', [
             'card' => $card,
             'idGame' => $idGame

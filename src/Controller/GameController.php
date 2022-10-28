@@ -124,11 +124,32 @@ class GameController
 
     public function code(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $idGame = $args['idGame'];
-        $params = $request->getParsedBody()['code'];
+        $code = $request -> getParsedBody()['code'];
 
-        return $response
-            ->withHeader('Location', '/game/'.$idGame .'?='. $params)
-            ->withStatus(302);
+        
+        $idGame= $args['idGame'];
+
+
+        if ($code == 2002) {
+            $card=$this->conditionService->code(47, $idGame);
+        } else if ($code == 1769) {
+           $card= $this->conditionService->code('C', $idGame);
+        } else if ($code == 6504) {
+           
+        } else if ($code == 6666) {
+           
+        } else if ($code == 9999) {
+           
+        } else {
+            
+        } 
+
+        return $this->view->render($response, 'game/code.twig', [
+            'card' => $card,
+            'idGame' => $idGame
+        ]);
     }
+
+            
+          
 }

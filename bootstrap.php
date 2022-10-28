@@ -59,7 +59,7 @@ $container->set(GameService::class, static function (Container $c) {
 });
 
 $container->set(ConditionService::class, static function (Container $c) {
-    return new ConditioNService();
+    return new ConditioNService($c->get(EntityManager::class));
 });
 
 $container->set(UserController::class, static function (ContainerInterface $container) {
@@ -76,6 +76,8 @@ $container->set(GameController::class, static function (ContainerInterface $cont
     $view = $container->get('view');
     return new GameController($view,$container->get(GameService::class),$container->get(ConditionService::class),$container->get(EntityManager::class));
 });
+
+
 
 
 

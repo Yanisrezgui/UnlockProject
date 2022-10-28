@@ -108,7 +108,7 @@ class GameController
             'idGame' => $idGame
         ]);
         
-        $this->conditionService->checkCanBeFlip($card);
+        $this->conditionService->checkCanBeFlip($card, $idGame);
 
         if ($card->getCanBeFlip() == 'true') {
             $card->setState('recto');

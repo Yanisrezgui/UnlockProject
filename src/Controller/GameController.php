@@ -18,7 +18,8 @@ class GameController
     private $gameService;
     private $conditionService;
 
-    public function __construct(Twig $view, GameService $gameService, ConditionService $conditionService,EntityManager $em)  {
+    public function __construct(Twig $view, GameService $gameService, ConditionService $conditionService, EntityManager $em)
+    {
         $this->view = $view;
         $this->gameService = $gameService;
         $this->conditionService = $conditionService;
@@ -68,7 +69,7 @@ class GameController
         //Supprime toutes les cartes associées à la partie supprimé dans la BDD
         $repositoryCard = $this->em->getRepository(Card::class);
         $cards = $repositoryCard->findBy(['idGame' => $idGame]);
-        foreach($cards as $card) {
+        foreach ($cards as $card) {
             $this->em->remove($card);
         }
 
@@ -107,7 +108,7 @@ class GameController
             'idCard' => $idCard,
             'idGame' => $idGame
         ]);
-        
+
         $this->conditionService->checkCanBeFlip($card);
 
         if ($card->getCanBeFlip() == 'true') {
@@ -126,30 +127,22 @@ class GameController
     {
         $code = $request -> getParsedBody()['code'];
 
-        
+
         $idGame= $args['idGame'];
 
 
         if ($code == 2002) {
             $card=$this->conditionService->code(47, $idGame);
-        } else if ($code == 1769) {
-           $card= $this->conditionService->code('C', $idGame);
-        } else if ($code == 6504) {
-           
-        } else if ($code == 6666) {
-           
-        } else if ($code == 9999) {
-           
+        } elseif ($code == 1769) {
+            $card= $this->conditionService->code('C', $idGame);
+        } elseif ($code == 6504) {
+        } elseif ($code == 9999) {
         } else {
-            
-        } 
+        }
 
         return $this->view->render($response, 'game/code.twig', [
             'card' => $card,
             'idGame' => $idGame
         ]);
     }
-
-            
-          
 }

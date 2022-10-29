@@ -27,6 +27,10 @@ class ConditionService
         $this->flipCardStepOne($card);
         $this->flipCardStepTwo($card, $cards);
         $this->flipCardStepThree($card, $cards);
+        $this->flipCardStepFour($card, $cards);
+        $this->flipCardStepFive($card, $cards);
+        $this->flipCardStepSix($card, $cards);
+        $this->flipCardStepSeven($card, $cards);
     }
 
     //Carte retournable dès le lancement de la partie
@@ -54,31 +58,98 @@ class ConditionService
     public function flipCardStepThree(Card $card, Array $cards) {
         if($card->getIdCard() == '85') {
             foreach($cards as $id) {
-                if($id->getIdCard() == '21') {
+                if($id->getIdCard() == '22') {
                     $card->setCanBeFlip(true);
                     $id->setCanBeDiscard(true);
                 }
-                if ($id->getIdCard() == '83') {
+                if ($id->getIdCard() == '63') {
+                    $id->setCanBeDiscard(true); 
+                }
+            }
+        }
+    }
+
+    //Carte 35 / 50 / 42 retournable si C retourné
+    public function flipCardStepFour(Card $card, Array $cards) {
+        if($card->getIdCard() == '35' || $card->getIdCard() == '50' || $card->getIdCard() == '42') {
+            foreach($cards as $id) {
+                if($id->getIdCard() == 'C') {
+                    $card->setCanBeFlip(true);
+                }
+            }
+        }
+    }
+
+    //Carte 67 retournable si 35 & 32 retourné
+    public function flipCardStepFive(Card $card, Array $cards) {
+        if($card->getIdCard() == '67') {
+            foreach($cards as $id) {
+                if($id->getIdCard() == '35') {
+                    $card->setCanBeFlip(true);
+                    $id->setCanBeDiscard(true);
+                }
+                if ($id->getIdCard() == '32') {
+                    $id->setCanBeDiscard(true); 
+                }
+            }
+        }
+    }
+
+    //Carte 4 retournable si 50 retourné
+    public function flipCardStepSix(Card $card, Array $cards) {
+        if($card->getIdCard() == '4') {
+            foreach($cards as $id) {
+                if($id->getIdCard() == '50') {
+                    $card->setCanBeFlip(true);
                     $id->setCanBeDiscard(true);
                 }
             }
         }
     }
 
-    //Carte C retourné, si 22 & 63 retourné + defaussable
-    public function canBeDiscard($idGame) {
-        $cards = $this->repository->findBy([
-            'state' => 'recto',
-            'idGame' => $idGame,
-        ]);
-        foreach($cards as $id) {
-            if($id->getIdCard() == '21') {
-                $id->setCanBeDiscard(true);
-            }
-            if ($id->getIdCard() == '80') {
-                $id->setCanBeDiscard(true);
+    //Carte M retournable si 47 retourné
+    public function flipCardStepSeven(Card $card, Array $cards) {
+        if($card->getIdCard() == 'M') {
+            foreach($cards as $id) {
+                if($id->getIdCard() == '47') {
+                    $card->setCanBeFlip(true);
+                }
             }
         }
+    }
+
+    //Carte C retourné, 22 & 63 defaussable 
+    public function canBeDiscard1769($idGame) {
+        $card21 = $this->repository->findOneBy([
+            'idCard' => '21',
+            'idGame' => $idGame
+        ]);
+        $card80 = $this->repository->findOneBy([
+            'idCard' => '80',
+            'idGame' => $idGame
+        ]);
+        $card21->setCanBeDiscard(true);
+        $card80->setCanBeDiscard(true);
+        $this->em->persist($card21);
+        $this->em->persist($card80);
+        $this->em->flush();
+    }
+
+    //Carte 47 retourné, 4 & 73 defaussable 
+    public function canBeDiscard2002($idGame) {
+        $card4 = $this->repository->findOneBy([
+            'idCard' => '4',
+            'idGame' => $idGame
+        ]);
+        $card73 = $this->repository->findOneBy([
+            'idCard' => '73',
+            'idGame' => $idGame
+        ]);
+        $card4->setCanBeDiscard(true);
+        $card73->setCanBeDiscard(true);
+        $this->em->persist($card4);
+        $this->em->persist($card73);
+        $this->em->flush();
     }
 
 

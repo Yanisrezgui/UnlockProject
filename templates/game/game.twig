@@ -3,24 +3,19 @@
 {% block title %}Unlock! - Game {% endblock %}
 {% block css %}/css/game.css{% endblock %}
 {% block modal %}/css/modal.css{% endblock %}
+{% block modal2 %}/css/modal2.css{% endblock %}
 
 {% block body %}
 <nav>
     <ul class="menu">
-        <details>
-            <summary>
-                <li><img src="/img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
-                <div class="details-modal-overlay"></div>
-            </summary>
-            <div class="details-modal" style="width: 420px;">
-                <div class="details-modal-title">
-                    <h1>Scénario - L'élite </h1>
-                </div>
-                <div class="details-modal-content" style="width: 350px;">
-                    <img src="/{{cards[0].getImage()}}"  alt="carte : {{cards[0].getNumber()}}">
-                </div>
+        <div class="modal" id="modal">
+            <div class="modal__body">
+            <a href="#" class="modal__btn-close">❌</a>
+            <img src="/{{cards[0].getImage()}}"  alt="carte : {{cards[0].getIdCard()}}">
             </div>
-        </details>
+            <div class="modal__overlay"></div>
+        </div>
+        <li><a href="#modal" class="btn"><img src="/img/nav/unlock-white.png" id="unlock-logo" alt="unlock"></a></li>
         <li id="timer">60:00</li>
         <li id="indice"><a href="">Indice</a></li>
         <details id="code">
@@ -54,8 +49,19 @@
     </div>
     <div class="all-cards">
     {% for card in cards %}
-        {% if card.getIdCard() != 1 %}
-            <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+        {% if (card.getIdCard() != '1')  %}
+            {# {% if card.getState() == 'recto' %}
+                <div class="modal" id="modalCards">
+                    <div class="modal__body">
+                        <a href="#" class="modal__btn-close">❌</a>
+                        <img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}">
+                    </div>
+                    <div class="modal__overlay"></div>
+                </div>
+                <a href="#modalCards" class="btn"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+            {% else %} #}
+                <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+            {# {% endif %} #}
         {% endif %}
     {% endfor %}
     </div>

@@ -195,8 +195,9 @@ class GameController
         $idGame = $args['idGame'];
         $machine = $request -> getParsedBody()['machine'];
 
-        if($machine == 01100){
+        if($machine == '01100'){
             $response->getBody()->write("bravo vous avez désamorcez la bombe. Vous pouvez cumulez le nombre 18 à une carte bleu");
+
         }
         else{
             $response->getBody()->write("Code machine faux ! vous perdez 1 minute");

@@ -135,6 +135,7 @@ class GameController
             $this->conditionService->canBeDiscard1769($idGame);
         } elseif ($code == 6504) {
         } elseif ($code == 9999) {
+            $card=$this->conditionService->code('M', $idGame);
         } else {
             return $response
                 ->withHeader('Location', '/game/'.$idGame)
@@ -154,7 +155,7 @@ class GameController
         $textHint = '';
 
         if ($idTextHint == 4) {
-            $textHint = $response->getBody()->write("Il ressemble à la photo de l'ordinateur. Visiblement, il avait 7 ans en 2009.");
+            $textHint = $response->getBody()->write("Il ressemble à la photo sur l'ordinateur. Visiblement, il avait 7 ans en 2009.");
         } elseif ($idTextHint == 21) {
             $textHint = $response->getBody()->write("Il semble manquer des cartes. Et qu'essaye de nous dire le Joker ?");
         } elseif ($idTextHint == 22) {
@@ -187,5 +188,22 @@ class GameController
             'idGame' => $idGame,
             'textHint' => $textHint
         ]);
+    }
+
+    public function machine(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
+        
+        $idGame = $args['idGame'];
+        $machine = $request -> getParsedBody()['machine'];
+
+        if($machine == 01100){
+            $response->getBody()->write("bravo vous avez désamorcez la bombe. Vous pouvez cumulez le nombre 18 à une carte bleu");
+        }
+        else{
+            $response->getBody()->write("Code machine faux ! vous perdez 1 minute");
+
+        }
+        
+
+        return $response;
     }
 }

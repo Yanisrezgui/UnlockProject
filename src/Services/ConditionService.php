@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Domain\Card;
@@ -6,11 +7,11 @@ use Doctrine\ORM\EntityManager;
 
 class ConditionService
 {
-
     private $em;
     private $repository;
 
-    public function __construct(EntityManager $em)  {
+    public function __construct(EntityManager $em)
+    {
         $this->em = $em;
         $this->repository = $em->getRepository(Card::class);
     }
@@ -34,20 +35,22 @@ class ConditionService
     }
 
     //Carte retournable dès le lancement de la partie
-    public function flipCardStepOne(Card $card) {
-        $arrayCarteRetournable = array ('63','15','80','32','21');
-        foreach($arrayCarteRetournable as $id) {
-            if($card->getIdCard() == $id) {
+    public function flipCardStepOne(Card $card)
+    {
+        $arrayCarteRetournable = array('63','15','80','32','21');
+        foreach ($arrayCarteRetournable as $id) {
+            if ($card->getIdCard() == $id) {
                 $card->setCanBeFlip(true);
             }
         }
     }
 
     //Carte 73 & 22 retournable si 15 retourné
-    public function flipCardStepTwo(Card $card, Array $cards) {
-        if($card->getIdCard() == '73' || $card->getIdCard() == '22') {
-            foreach($cards as $id) {
-                if($id->getIdCard() == '15') {
+    public function flipCardStepTwo(Card $card, array $cards)
+    {
+        if ($card->getIdCard() == '73' || $card->getIdCard() == '22') {
+            foreach ($cards as $id) {
+                if ($id->getIdCard() == '15') {
                     $card->setCanBeFlip(true);
                 }
             }
@@ -55,25 +58,27 @@ class ConditionService
     }
 
     //Carte 85 retournable, si 22 & 63 retourné + defaussable
-    public function flipCardStepThree(Card $card, Array $cards) {
-        if($card->getIdCard() == '85') {
-            foreach($cards as $id) {
-                if($id->getIdCard() == '22') {
+    public function flipCardStepThree(Card $card, array $cards)
+    {
+        if ($card->getIdCard() == '85') {
+            foreach ($cards as $id) {
+                if ($id->getIdCard() == '22') {
                     $card->setCanBeFlip(true);
                     $id->setCanBeDiscard(true);
                 }
                 if ($id->getIdCard() == '63') {
-                    $id->setCanBeDiscard(true); 
+                    $id->setCanBeDiscard(true);
                 }
             }
         }
     }
 
     //Carte 35 / 50 / 42 retournable si C retourné
-    public function flipCardStepFour(Card $card, Array $cards) {
-        if($card->getIdCard() == '35' || $card->getIdCard() == '50' || $card->getIdCard() == '42') {
-            foreach($cards as $id) {
-                if($id->getIdCard() == 'C') {
+    public function flipCardStepFour(Card $card, array $cards)
+    {
+        if ($card->getIdCard() == '35' || $card->getIdCard() == '50' || $card->getIdCard() == '42') {
+            foreach ($cards as $id) {
+                if ($id->getIdCard() == 'C') {
                     $card->setCanBeFlip(true);
                 }
             }
@@ -81,25 +86,27 @@ class ConditionService
     }
 
     //Carte 67 retournable si 35 & 32 retourné
-    public function flipCardStepFive(Card $card, Array $cards) {
-        if($card->getIdCard() == '67') {
-            foreach($cards as $id) {
-                if($id->getIdCard() == '35') {
+    public function flipCardStepFive(Card $card, array $cards)
+    {
+        if ($card->getIdCard() == '67') {
+            foreach ($cards as $id) {
+                if ($id->getIdCard() == '35') {
                     $card->setCanBeFlip(true);
                     $id->setCanBeDiscard(true);
                 }
                 if ($id->getIdCard() == '32') {
-                    $id->setCanBeDiscard(true); 
+                    $id->setCanBeDiscard(true);
                 }
             }
         }
     }
 
     //Carte 4 retournable si 50 retourné
-    public function flipCardStepSix(Card $card, Array $cards) {
-        if($card->getIdCard() == '4') {
-            foreach($cards as $id) {
-                if($id->getIdCard() == '50') {
+    public function flipCardStepSix(Card $card, array $cards)
+    {
+        if ($card->getIdCard() == '4') {
+            foreach ($cards as $id) {
+                if ($id->getIdCard() == '50') {
                     $card->setCanBeFlip(true);
                     $id->setCanBeDiscard(true);
                 }
@@ -108,18 +115,20 @@ class ConditionService
     }
 
     //Carte M retournable si 47 retourné
-    public function flipCardStepSeven(Card $card, Array $cards) {
-        if($card->getIdCard() == 'M') {
-            foreach($cards as $id) {
-                if($id->getIdCard() == '47') {
+    public function flipCardStepSeven(Card $card, array $cards)
+    {
+        if ($card->getIdCard() == 'M') {
+            foreach ($cards as $id) {
+                if ($id->getIdCard() == '47') {
                     $card->setCanBeFlip(true);
                 }
             }
         }
     }
 
-    //Carte C retourné, 22 & 63 defaussable 
-    public function canBeDiscard1769($idGame) {
+    //Carte C retourné, 22 & 63 defaussable
+    public function canBeDiscard1769($idGame)
+    {
         $card21 = $this->repository->findOneBy([
             'idCard' => '21',
             'idGame' => $idGame
@@ -135,8 +144,9 @@ class ConditionService
         $this->em->flush();
     }
 
-    //Carte 47 retourné, 4 & 73 defaussable 
-    public function canBeDiscard2002($idGame) {
+    //Carte 47 retourné, 4 & 73 defaussable
+    public function canBeDiscard2002($idGame)
+    {
         $card4 = $this->repository->findOneBy([
             'idCard' => '4',
             'idGame' => $idGame
@@ -153,17 +163,20 @@ class ConditionService
     }
 
 
-    public function code($idCard, $idGame){
+    public function code($idCard, $idGame)
+    {
         $repository = $this->em->getRepository(Card::class);
-            $card = $repository->findOneBy([
-                'idCard' => $idCard,
-                'idGame' => $idGame
-            ]);
+        $card = $repository->findOneBy([
+            'idCard' => $idCard,
+            'idGame' => $idGame
+        ]);
+        if ($idCard!='M') {
             $card->setCanBeFlip(true);
             $this->em->persist($card);
             $this->em->flush();
+        }
 
-            return $card;
+
+        return $card;
     }
-
 }

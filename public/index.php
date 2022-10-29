@@ -24,5 +24,7 @@ $app->get('/game/{idGame}/card/{idCard}', \App\Controller\GameController::class 
 $app->get('/select-game', \App\Controller\GameController::class . ':selectGame');
 $app->post('/game/{idGame}/code', \App\Controller\GameController::class . ':code');
 $app->post('/game/{idGame}/hint', \App\Controller\GameController::class . ':hint');
+$app->post('/game/{idGame}/machine', \App\Controller\GameController::class . ':machine');
+
 
 $app->run();

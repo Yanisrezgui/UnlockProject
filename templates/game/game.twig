@@ -3,29 +3,82 @@
 {% block title %}Unlock! - Game {% endblock %}
 {% block css %}/css/game.css{% endblock %}
 {% block modal %}/css/modal.css{% endblock %}
+{% block modal2 %}/css/modal2.css{% endblock %}
 
 {% block body %}
-
 <nav>
     <ul class="menu">
-        <details>
+        <div class="modal" id="modal">
+            <div class="modal__body" style="margin-left:100%;">
+            <a href="#" class="modal__btn-close">❌</a>
+            <img src="/{{cards[0].getImage()}}"  alt="carte : {{cards[0].getIdCard()}}">
+            </div>
+            <div class="modal__overlay"></div>
+        </div>
+        <li><a href="#modal" class="btn"><img src="/img/nav/unlock-white.png" id="unlock-logo" alt="unlock"></a></li>
+        <li id="timer">60:00</li>
+        <details id="indice">
             <summary>
-                <li><img src="/img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
+                <li class="button">Indice</li>
                 <div class="details-modal-overlay"></div>
             </summary>
             <div class="details-modal" style="width: 420px;">
                 <div class="details-modal-title">
-                    <h1>Scénario - L'élite </h1>
+                    <h1>Indice</h1>
                 </div>
-                <div class="details-modal-content" style="width: 350px;">
-                    <img src="/{{cards[0].getImage()}}"  alt="carte : {{cards[0].getNumber()}}">
+                    <div class="details-modal-content" style="width: 350px;">
+                        <form action="/game/{{idGame}}/hint" method="POST">
+                            <label for="hint">Entrez le numéro d'une carte : </label>
+                            <input type="text" name="hint" id="hint-text">
+                            <input type="submit" value="Valider">
+                        </form>
+                    </div>
                 </div>
             </div>
         </details>
-        <li id="timer">60:00</li>
-        <li id="indice"><a href="">Indice</a></li>
-        <li id="code"><a href="">Code</a></li>
-        <li id="machine"><a href="">Machine</a></li>
+        <details id="code">
+            <summary>
+                <li class="button">Code</li>
+                <div class="details-modal-overlay"></div>
+            </summary>
+            <div class="details-modal" style="width: 420px;">
+                <div class="details-modal-title">
+                    <h1>Code</h1>
+                </div>
+                    <div class="details-modal-content" style="width: 350px;">
+                        <form action="/game/{{idGame}}/code" method="POST">
+                            <label for="code">Entrez un code : </label>
+                            <input type="text" name="code" id="code-text">
+                            <input type="submit" value="Valider">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </details>
+        <details id="machine">
+            <summary>
+                <li class="button">Machine</li>
+                <div class="details-modal-overlay"></div>
+            </summary>
+            <div class="details-modal" style="width: 420px;">
+                <div class="details-modal-title">
+                    <h1>Machine</h1>
+                </div>
+                    <div class="details-modal-content" style="width: 500px;">
+                        <form action="/game/{{idGame}}/machine" method="POST">
+                            <label for="machine">Désamorcer la bombe </label>
+                            <br>
+                            <br>
+                            <div>
+                              <input type="text" id="machine" name="machine"  >
+                            </div>
+                            <br>
+                             <input type="submit" value="Valider">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </details>
         <li id="quitter"><a href="/">Quitter</a></li>
     </ul>
 </nav>
@@ -37,8 +90,12 @@
     </div>
     <div class="all-cards">
     {% for card in cards %}
-        {% if card.getIdCard() != 1 %}
-            <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+        {% if (card.getIdCard() != '1') and (card.getDiscard() == false)  %}
+            {% if card.getState() == 'verso' %}
+                <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+            {% else %}
+                <a href="/game/{{idGame}}/card-menu/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+            {% endif %}
         {% endif %}
     {% endfor %}
     </div>

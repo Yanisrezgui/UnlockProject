@@ -15,6 +15,7 @@ use App\Services\UserService;
 use App\Controller\AccueilController;
 use App\Controller\GameController;
 use App\Services\GameService;
+use App\Services\ConditionService;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -42,24 +43,18 @@ $container->set(EntityManager::class, static function (Container $c): EntityMana
 
 
 $container->set('view', function () {
-    return Twig::create(
-        __DIR__ . '/templates',
-        ['cache' => false]
-    );
+    $twig = Twig::create('../templates', ['debug' => true]);
+	$twig->addExtension(new \Twig\Extension\DebugExtension());
+	return $twig;
 });
 
-
-$container->set(UserService::class, static function (Container $c) {
-    return new UserService($c->get(EntityManager::class));
-});
 
 $container->set(GameService::class, static function (Container $c) {
     return new GameService($c->get(EntityManager::class));
 });
 
-$container->set(UserController::class, static function (ContainerInterface $container) {
-    $view = $container->get('view');
-    return new UserController($view, $container->get(UserService::class));
+$container->set(ConditionService::class, static function (Container $c) {
+    return new ConditioNService($c->get(EntityManager::class));
 });
 
 $container->set(AccueilController::class, static function (ContainerInterface $container) {
@@ -69,8 +64,10 @@ $container->set(AccueilController::class, static function (ContainerInterface $c
 
 $container->set(GameController::class, static function (ContainerInterface $container) {
     $view = $container->get('view');
-    return new GameController($view,$container->get(GameService::class),$container->get(EntityManager::class));
+    return new GameController($view,$container->get(GameService::class),$container->get(ConditionService::class),$container->get(EntityManager::class));
 });
+
+
 
 
 

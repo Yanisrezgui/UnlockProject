@@ -1,0 +1,20 @@
+{% extends 'base.twig' %}
+
+{% block title %}Unlock! {% endblock %}
+{% block css %}/css/game.css{% endblock %}
+{% block body %}
+<nav>
+    <ul class="menu">
+        <li><img src="/img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
+        <li id="bravo">Félicitations vous avez terminer la partie ! Votre score : {{game.getScore()}} / 100</li>
+    </ul>
+</nav>
+<div class="game-main">
+    <div class="retour-button">
+        <a href="/">Retourner au menu</a>
+    </div>
+</div>
+
+
+</div>
+{% endblock %}

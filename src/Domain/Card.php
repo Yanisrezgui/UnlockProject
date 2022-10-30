@@ -31,18 +31,30 @@ final class Card
     #[Column(type: 'string', nullable: false)]
     private string $type;
 
+    #[Column(type: 'boolean', nullable: false)]
+    private bool $canBeFlip;
+
+    #[Column(type: 'boolean', nullable: false)]
+    private bool $canBeDiscard;
+
+    #[Column(type: 'boolean', nullable: false)]
+    private bool $discard;
+
     #[OneToMany(targetEntity: CardController::class, mappedBy: 'card')]
     #[Column(type: 'integer', nullable:false)]
     private int $idGame;
 
-    public function __construct($idCard, $imgRecto, $imgVerso, $state, $type, $idGame)
+    public function __construct($idCard, $imgRecto, $imgVerso, $state, $type, $canBeFlip, $canBeDiscard, $idGame, $discard)
     {
         $this->idCard = $idCard;
         $this->imgRecto = $imgRecto;
         $this->imgVerso = $imgVerso;
         $this->state = $state;
         $this->type = $type;
-        $this->idGame = $idGame;
+        $this->canBeFlip = $canBeFlip;
+        $this->canBeDiscard = $canBeDiscard;
+        $this->idGame = $idGame;    
+        $this->discard = $discard;
     }
     
    public function getId(): int
@@ -89,7 +101,6 @@ final class Card
         $this->state = $state;
     }
 
-
     public function getType(): string
     {
         return $this->type;
@@ -98,6 +109,36 @@ final class Card
     public function setType(string $type)
     {
         $this->type = $type;
+    }
+
+    public function getCanBeFlip(): bool
+    {
+        return $this->canBeFlip;
+    }
+
+    public function setCanBeFlip(bool $canBeFlip)
+    {
+        $this->canBeFlip = $canBeFlip;
+    }
+    
+    public function getCanBeDiscard(): bool
+    {
+        return $this->canBeDiscard;
+    }
+
+    public function setCanBeDiscard(bool $canBeDiscard)
+    {
+        $this->canBeDiscard = $canBeDiscard;
+    }
+
+    public function getDiscard(): bool
+    {
+        return $this->discard;
+    }
+
+    public function setDiscard(bool $discard)
+    {
+        $this->discard = $discard;
     }
 
     public function getIdGame(): int

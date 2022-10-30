@@ -45,8 +45,15 @@ composer require slim/slim:"4.*"
 composer require slim/psr7
 ```
 #### Database
+🐘 Still in the PHP Container :
+```
+cd /app
+```
+create the UnlockDB :
+```
+php vendor/bin/doctrine orm:schema-tool:create
+```
 
-To Do (create DB - reset DB)
 
 ## Link
 http://localhost:8080/

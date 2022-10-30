@@ -11,12 +11,6 @@ stop:
 
 ## —— 🐘 PHP / Composer ——
 
-install-slim:
-	@docker exec -d unlock-php composer require slim/slim:"4.*"
-
-install-psr:
-	@docker exec -d unlock-php composer require slim/psr7
-
 container-php:
 	@docker exec -it unlock-php bash
 

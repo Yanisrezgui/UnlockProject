@@ -127,6 +127,14 @@ class GameController
     {
         $code = $request -> getParsedBody()['code'];
         $idGame= $args['idGame'];
+        $isCodeExist = true;
+        $card = '';
+
+        $repository = $this->em->getRepository(Game::class);
+        $game = $repository->findOneBy([
+            'idGame' => $idGame
+        ]);
+
         if ($code == 2002) {
             $card=$this->conditionService->code(47, $idGame);
             $this->conditionService->canBeDiscard2002($idGame);
@@ -134,18 +142,24 @@ class GameController
             $card = $this->conditionService->code('C', $idGame);
             $this->conditionService->canBeDiscard1769($idGame);
         } elseif ($code == 6504) {
-            return $this->view->render($response, 'game/game-finished.twig');
+            $game->setEnd(true);
+            $this->em->persist($game);
+            $this->em->flush();
+            return $this->view->render($response, 'game/game-finished.twig',[
+                'game' => $game
+            ]);
         } elseif ($code == 9999) {
-            $card=$this->conditionService->code('M', $idGame);
+            return $this->view->render($response, 'game/morse.twig',[
+                'idGame' => $idGame
+            ]);
         } else {
-            return $response
-                ->withHeader('Location', '/game/'.$idGame)
-                ->withStatus(302);
+            $isCodeExist = false;
         } 
 
         return $this->view->render($response, 'game/code.twig', [
             'card' => $card,
-            'idGame' => $idGame
+            'idGame' => $idGame,
+            'code' => $isCodeExist
         ]);
     }
 
@@ -202,13 +216,64 @@ class GameController
         
         $idGame = $args['idGame'];
         $machine = $request -> getParsedBody()['machine'];
+        $textMachhine = '';
+
+        $repository = $this->em->getRepository(Game::class);
+        $game = $repository->findOneBy([
+            'idGame' => $idGame
+        ]);
 
         if($machine == '01100') {
-            "bravo vous avez désamorcez la bombe. Vous pouvez cumulez le nombre 18 à une carte bleu";
+            $textMachhine = "Bravo vous avez désamorcé la bombe ! Vous gagnez la carte 18, cumulez-la avec une carte bleu.";
+            $this->conditionService->card60(60,$idGame);
         } else {
-            "Code machine faux ! vous perdez 1 minute";
+            $textMachhine = "Code machine faux ! Vous perdez 5 de scores";
+            $game->setScore($game->getScore() - 5);
+            $this->em->persist($game);
+            $this->em->flush();
         }
 
-        return $response;
+        return $this->view->render($response, 'game/machine.twig', [
+            'idGame' => $idGame,
+            'textMachine' => $textMachhine
+        ]);
     }
+
+    public function seeCard(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
+        
+        $idGame = $args['idGame'];
+        $idCard = $args['idCard'];
+
+        $repository = $this->em->getRepository(Card::class);
+        $card = $repository->findOneBy([
+            'idCard' => $idCard,
+            'idGame' => $idGame
+        ]);
+
+        return $this->view->render($response, 'game/card.twig', [
+            'idGame' => $idGame,
+            'card' => $card,
+        ]);
+    }
+
+    public function discardCard(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
+        
+        $idGame = $args['idGame'];
+        $idCard = $args['idCard'];
+
+        $repository = $this->em->getRepository(Card::class);
+        $card = $repository->findOneBy([
+            'idCard' => $idCard,
+            'idGame' => $idGame
+        ]);
+
+        $card->setDiscard(true);
+        $this->em->persist($card);
+        $this->em->flush();
+
+        return $response
+            ->withHeader('Location', '/game/'.$idGame)
+            ->withStatus(302);
+    }
+
 }

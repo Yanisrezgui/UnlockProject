@@ -170,13 +170,34 @@ class ConditionService
             'idCard' => $idCard,
             'idGame' => $idGame
         ]);
-        if ($idCard!='M') {
-            $card->setCanBeFlip(true);
-            $this->em->persist($card);
+        $card->setCanBeFlip(true);
+        $this->em->persist($card);
+        $this->em->flush();
+
+        return $card;
+    }
+
+    public function card60($idCard, $idGame) {
+        $repository = $this->em->getRepository(Card::class);
+        $card60 = $repository->findOneBy([
+            'idCard' => $idCard,
+            'idGame' => $idGame
+        ]);
+        $card42 = $repository->findOneBy([
+            'idCard' => 42,
+            'idGame' => $idGame
+        ]);
+        $card85 = $repository->findOneBy([
+            'idCard' => 85,
+            'idGame' => $idGame
+        ]);
+        if($card42->getState() == 'recto') {
+            $card60->setCanBeFlip(true);
+            $card42->setCanBeDiscard(true);
+            $card85->setCanBeDiscard(true);
+            $this->em->persist($card60);
             $this->em->flush();
         }
 
-
-        return $card;
     }
 }

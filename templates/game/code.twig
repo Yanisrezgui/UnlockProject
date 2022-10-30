@@ -7,11 +7,21 @@
 <nav>
     <ul class="menu">
         <li><img src="/img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
-        <li id="bravo">Félicitations ! Vous avez déploquez la carte : {{card.getIdCard()}}. Cliquez dessus pour la retourner</li>
+        {% if code %}
+            <li id="bravo">Félicitations ! Vous avez déploquez la carte : {{card.getIdCard()}}. Cliquez dessus pour la retourner</li>
+        {% else %}
+            <li id="bravo">Le code que vous avez entré n'existe pas !</li>
+        {% endif %}
     </ul>
 </nav>
 <div class="game-main">
-    <a href="/game/{{idGame}}/card/{{card.getIdCard()}}" class="card-show"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+    {% if code %}
+        <a href="/game/{{idGame}}/card/{{card.getIdCard()}}" class="card-show"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+    {% else %}
+        <div class="retour-button">
+            <a href="/game/{{idGame}}">Retour</a>
+        </div>
+    {% endif %}
     {# <audio
         controls
         src="/audio/morse.mp3">

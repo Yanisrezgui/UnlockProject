@@ -22,6 +22,9 @@ $app->get('/game/delete-game/{idGame}', \App\Controller\GameController::class . 
 $app->get('/game/{id}', \App\Controller\GameController::class . ':start');
 $app->get('/game/{idGame}/card/{idCard}', \App\Controller\GameController::class . ':flipCard');
 $app->get('/select-game', \App\Controller\GameController::class . ':selectGame');
+$app->get('/game/{idGame}/card-menu/{idCard}', \App\Controller\GameController::class . ':seeCard');
+$app->get('/game/{idGame}/card-discard/{idCard}', \App\Controller\GameController::class . ':discardCard');
+
 
 $app->post('/game/{idGame}/code', \App\Controller\GameController::class . ':code');
 $app->post('/game/{idGame}/hint', \App\Controller\GameController::class . ':hint');

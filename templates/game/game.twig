@@ -9,7 +9,7 @@
 <nav>
     <ul class="menu">
         <div class="modal" id="modal">
-            <div class="modal__body">
+            <div class="modal__body" style="margin-left:100%;">
             <a href="#" class="modal__btn-close">❌</a>
             <img src="/{{cards[0].getImage()}}"  alt="carte : {{cards[0].getIdCard()}}">
             </div>
@@ -90,25 +90,16 @@
     </div>
     <div class="all-cards">
     {% for card in cards %}
-        {% if (card.getIdCard() != '1')  %}
-            {# {% if card.getState() == 'recto' %}
-                <div class="modal" id="modalCards">
-                    <div class="modal__body">
-                        <a href="#" class="modal__btn-close">❌</a>
-                        <img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}">
-                    </div>
-                    <div class="modal__overlay"></div>
-                </div>
-                <a href="#modalCards" class="btn"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
-            {% else %} #}
+        {% if (card.getIdCard() != '1') and (card.getDiscard() == false)  %}
+            {% if card.getState() == 'verso' %}
                 <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
-            {# {% endif %} #}
+            {% else %}
+                <a href="/game/{{idGame}}/card-menu/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+            {% endif %}
         {% endif %}
     {% endfor %}
     </div>
 </div>
-
-{{ dump(card) }}
 
 <script src="/index.js"></script>
 

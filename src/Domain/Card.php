@@ -37,11 +37,14 @@ final class Card
     #[Column(type: 'boolean', nullable: false)]
     private bool $canBeDiscard;
 
+    #[Column(type: 'boolean', nullable: false)]
+    private bool $discard;
+
     #[OneToMany(targetEntity: CardController::class, mappedBy: 'card')]
     #[Column(type: 'integer', nullable:false)]
     private int $idGame;
 
-    public function __construct($idCard, $imgRecto, $imgVerso, $state, $type, $canBeFlip, $canBeDiscard, $idGame)
+    public function __construct($idCard, $imgRecto, $imgVerso, $state, $type, $canBeFlip, $canBeDiscard, $idGame, $discard)
     {
         $this->idCard = $idCard;
         $this->imgRecto = $imgRecto;
@@ -50,7 +53,8 @@ final class Card
         $this->type = $type;
         $this->canBeFlip = $canBeFlip;
         $this->canBeDiscard = $canBeDiscard;
-        $this->idGame = $idGame;
+        $this->idGame = $idGame;    
+        $this->discard = $discard;
     }
     
    public function getId(): int
@@ -125,6 +129,16 @@ final class Card
     public function setCanBeDiscard(bool $canBeDiscard)
     {
         $this->canBeDiscard = $canBeDiscard;
+    }
+
+    public function getDiscard(): bool
+    {
+        return $this->discard;
+    }
+
+    public function setDiscard(bool $discard)
+    {
+        $this->discard = $discard;
     }
 
     public function getIdGame(): int

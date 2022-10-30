@@ -1,17 +1,19 @@
 {% extends 'base.twig' %}
 
-{% block title %}Unlock! {% endblock %}
+{% block title %}Unlock! - Machine {% endblock %}
 {% block css %}/css/game.css{% endblock %}
+{% block modal %}/css/modal.css{% endblock %}
 {% block body %}
 <nav>
     <ul class="menu">
         <li><img src="/img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
-        <li id="bravo">Félicitations vous avez terminer la partie ! Votre score : {{game.getScore()}} / 100</li>
+        <li id="bravo">{{textMachine}}</li>
     </ul>
 </nav>
 <div class="game-main">
+    <img src="/img/card/Carte18.png" id="card18" alt="carte : 18">
     <div class="retour-button">
-        <a href="/">Retourner au menu</a>
+        <a href="/game/{{idGame}}">Retour</a>
     </div>
 </div>
 

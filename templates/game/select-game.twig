@@ -1,17 +1,34 @@
 {% extends 'base.twig' %}
 
 {% block title %}Unlock! - Select game{% endblock %}
-{% block css %}css/select-game.css{% endblock %}
+{% block css %}css/accueil.css{% endblock %}
 
 {% block body %}
-    <div class="content">
-        {% for game in games %}
+    <div class="content-select-game">
+        <div class="continue-game">
+            <h2>Continuer une partie :</h2>
+            {% for game in games %}
             <div class="button-text">
                 <a href="/game/{{game.getIdGame()}}" class="start">Partie {{game.getIdGame()}} </a>
                 <a href="/game/delete-game/{{game.getIdGame()}}">
                     <img src="./img/nav/recycle-bin.png" alt="delete">
                 </a>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="historic-game">
+            <h2>Ancienne partie :</h2>
+            {% for game in gamesFinished %}
+            <div class="button-text">
+                <div class="finished"> Partie {{game.getIdGame()}} | <span> Score : {{game.getScore()}} / 100 </span> </div>
+                <a href="/game/delete-game/{{game.getIdGame()}}">
+                    <img src="./img/nav/recycle-bin.png" alt="delete">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="back-button">
+            <a href="/">Retour</a>
+        </div>
     </div>
 {% endblock %} 

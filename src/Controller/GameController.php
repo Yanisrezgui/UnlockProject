@@ -49,8 +49,13 @@ class GameController
             'end' => false
         ]);
 
+        $gamesFinished = $repository->findBy([
+            'end' => true
+        ]);
+
         return $this->view->render($response, 'game/select-game.twig', [
-            'games' => $games
+            'games' => $games,
+            'gamesFinished' => $gamesFinished
         ]);
         return $response;
     }
@@ -62,7 +67,6 @@ class GameController
         //Supprime la partie sélectionner dans la BDD
         $repositoryGame = $this->em->getRepository(Game::class);
         $game = $repositoryGame->findOneBy([
-            'end' => false,
             'idGame' => $idGame
         ]);
 

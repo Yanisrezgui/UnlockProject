@@ -7,16 +7,15 @@
 <nav>
     <ul class="menu">
         <li><img src="/img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
+        <li id="bravo">Félicitations ! Vous avez déploquez la carte : {{card.getIdCard()}}. Cliquez dessus pour la retourner</li>
     </ul>
 </nav>
 <div class="game-main">
-    <a href="/game/{{idGame}}/card/{{card.getIdCard()}}"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
-    
-    <p></p>
-    <audio
+    <a href="/game/{{idGame}}/card/{{card.getIdCard()}}" class="card-show"><img src="/{{card.getImage()}}"  alt="carte : {{card.getIdCard()}}"></a>
+    {# <audio
         controls
         src="/audio/morse.mp3">
 
-    </audio>
+    </audio> #}
 </div>
 {% endblock %}

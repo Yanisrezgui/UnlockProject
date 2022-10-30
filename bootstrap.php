@@ -49,21 +49,12 @@ $container->set('view', function () {
 });
 
 
-$container->set(UserService::class, static function (Container $c) {
-    return new UserService($c->get(EntityManager::class));
-});
-
 $container->set(GameService::class, static function (Container $c) {
     return new GameService($c->get(EntityManager::class));
 });
 
 $container->set(ConditionService::class, static function (Container $c) {
     return new ConditioNService($c->get(EntityManager::class));
-});
-
-$container->set(UserController::class, static function (ContainerInterface $container) {
-    $view = $container->get('view');
-    return new UserController($view, $container->get(UserService::class));
 });
 
 $container->set(AccueilController::class, static function (ContainerInterface $container) {

@@ -7,14 +7,21 @@
 <nav>
     <ul class="menu">
         <li><img src="/img/nav/unlock-white.png" class="button" id="unlock-logo" alt="unlock"></li>
+        {% if card.getState() == 'recto' %}
+                <li id="bravo">Indice carte {{card.getIdCard()}} : {{textHint}}</li>
+        {% else %}
+                <li id="bravo">Vous n'avez pas encore découverte cette carte !</li>
+        {% endif %}
+        
     </ul>
 </nav>
 <div class="game-main">
-        <p>
-            {{textHint}}
-        </p>
-<div class="button">
+    <img src="/{{card.getImage()}}" class="card-show" alt="carte : {{card.getIdCard()}}">
+    <div class="retour-button">
         <a href="/game/{{idGame}}">Retour</a>
-        </div>
+    </div>
+</div>
+
+
 </div>
 {% endblock %}

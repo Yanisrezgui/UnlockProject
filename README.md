@@ -44,7 +44,7 @@ composer require slim/slim:"4.*"
 ```
 composer require slim/psr7
 ```
-#### Database
+#### Install Database
 🐘 Still in the PHP Container :
 ```
 cd /app

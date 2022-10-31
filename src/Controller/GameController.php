@@ -221,6 +221,7 @@ class GameController
         $idGame = $args['idGame'];
         $machine = $request -> getParsedBody()['machine'];
         $textMachhine = '';
+        $codeBon = true;
 
         $repository = $this->em->getRepository(Game::class);
         $game = $repository->findOneBy([
@@ -232,6 +233,7 @@ class GameController
             $this->conditionService->card60(60,$idGame);
         } else {
             $textMachhine = "Code machine faux ! Vous perdez 5 de scores";
+            $codeBon = false;
             $game->setScore($game->getScore() - 5);
             $this->em->persist($game);
             $this->em->flush();
@@ -239,7 +241,8 @@ class GameController
 
         return $this->view->render($response, 'game/machine.twig', [
             'idGame' => $idGame,
-            'textMachine' => $textMachhine
+            'textMachine' => $textMachhine,
+            'codeBon' => $codeBon
         ]);
     }
 

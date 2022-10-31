@@ -145,7 +145,11 @@ class GameController
         } elseif ($code == 1769) {
             $card = $this->conditionService->code('C', $idGame);
             $this->conditionService->canBeDiscard1769($idGame);
-        } elseif ($code == 6504) {
+        } elseif ($code == 6666) {
+            return $this->view->render($response, 'game/bombe.twig',[
+                'idGame' => $idGame
+            ]);
+        }  elseif ($code == 6504) {
             $game->setEnd(true);
             $this->em->persist($game);
             $this->em->flush();
